@@ -7,6 +7,7 @@
 3. [Watermark-Learning](https://github.com/20110240069/Watermark-Learning-Resources.git)
 
 ## 面经集合
-1. NLP|CV|大模型|多模态|Prompt|GTP|SD 问题
-2. 算法问题
-3. 计算机体系问题
+1. [NLP]() | [CV ]() | [大模型]() | [多模态]() | [Prompt]() | [GPT] | [SD]() |]问题
+2. 项目问题
+3. 算法问题
+4. 计算机体系问题
