@@ -1,4 +1,4 @@
-# 算法修炼之路
+# Algorithm Learning 算法修炼之路
 ## NLP
 1. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
 ## Watermarking
