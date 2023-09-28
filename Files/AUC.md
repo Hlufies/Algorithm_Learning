@@ -4,7 +4,8 @@
 (2) P或者N表示正样本或者负样本，也就是预测的结果。那么TP就表示预测对了的正样本，也就是真实情况是正样本，预测也是正样本的这一部分。
 (3) FN表示预测错误的负样本，也就是真实情况是正样本，但是预测成了负样本的这一部分数据。
 ```
- ![image](https://github.com/Hlufies/Algorithm_Learning/assets/130231524/05ceb901-8460-4385-b3d1-4cd4f354f7b1)
+![image](https://github.com/Hlufies/Algorithm_Learning/assets/130231524/ca2cef14-e5b9-4a64-964d-c848d275ad66)
+
 3. 基于混淆矩阵的相关指标定义
 ```
 P   精确率: TP/(TP+FP)    意义为：在所有预测为1的样本中，label确实为1的占比
