@@ -1,3 +1,6 @@
+[lin1](https://zhuanlan.zhihu.com/p/360765777)
+[lin2](https://zhuanlan.zhihu.com/p/361214293)
+
 1. 混淆矩阵的定义
 ```
 (1) 四个区域TP、FP、TN、FN，其前面的T或者F代表的是True或者False，表示预测对了还是预测错了。
