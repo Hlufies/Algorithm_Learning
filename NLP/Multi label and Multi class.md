@@ -91,3 +91,52 @@ class BCELosswithLogits(nn.Module):
         return loss
 
 ```
+
+### Focal Loss（FL）
+```
+动机：如何 让 稀有的instance-label对能够得到得到合理的“关注”？
+方法思路：通过 给 hard-to-classify” instances 分配更高的权值；
+```
+
+```
+import torch
+import torch.nn.functional as F
+
+def focal_loss(logits, labels, alpha, gamma):
+    """计算`logits`和真实标签`labels`之间的Focal Loss。
+
+    Focal Loss = -alpha_t * (1-pt)^gamma * log(pt)
+    其中pt是被分类为真类别的概率。
+    pt = p (如果是真类别)，否则pt = 1 - p。p = sigmoid(logit)。
+
+    参数:
+      logits: 一个形状为 [batch, num_classes] 的浮点张量。
+      labels: 一个形状为 [batch, num_classes] 的浮点张量。
+      alpha: 一个形状为 [batch_size] 的浮点张量，指定每个样本的平衡交叉熵的权重。
+      gamma: 一个标量浮点数，调节对于困难和容易样本的损失。
+
+    返回:
+      focal_loss: 一个表示标准化总损失的 float32 标量。
+    """
+    # 使用二元交叉熵损失函数计算基础损失
+    bce_loss = F.binary_cross_entropy_with_logits(input=logits, target=labels, reduction="none")
+
+    # 计算Focal Loss的调制因子
+    if gamma == 0.0:
+        modulator = 1.0
+    else:
+        modulator = torch.exp(-gamma * labels * logits - gamma * torch.log(1 + torch.exp(-1.0 * logits)))
+
+    # 计算Focal Loss
+    loss = modulator * bce_loss
+
+    # 加权损失
+    weighted_loss = alpha * loss
+
+    # 计算标准化总损失
+    loss = torch.sum(weighted_loss)
+    loss /= torch.sum(labels)
+
+    return loss
+
+```
