@@ -1,7 +1,8 @@
 # Algorithm Learning 算法修炼之路
 ## NLP
 1. [Bert](https://github.com/Hlufies/Algorithm_Learning/blob/main/Files/Bert.md)
-2. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
+2. [Distilling](https://github.com/Hlufies/Algorithm_Learning/blob/main/Files/model_Distilling.md)
+3. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
 
 ## CV
 1. Diffusion
