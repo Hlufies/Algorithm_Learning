@@ -38,7 +38,5 @@ BERT（Bidirectional Encoder Representations from Transformers）是一种Transf
 解决方法：
 在做出预测之前同时考虑左上下文和右上下文
 ```
-![Uploading image.png…]()
-
 ### Bert表征学习
 #### Bert 输入输出表征长啥样
