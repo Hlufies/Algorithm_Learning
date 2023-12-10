@@ -40,7 +40,7 @@ Multi-Label，不同于多类别分类，多标签分类的总标签集合大，
 ## Multi-Label 损失函数 构建与选择
 ### BCE
 ```
-存在问题：由于 head classes的主导以及negative instances的影响，导致 BCE Loss 函数 容易受到 类别不均衡问题 影响；
+存在问题：由于 head classes的主导以及negative instances的影响，导致 BCE Loss 函数容易受到类别不均衡问题影响；
 优化方向：绝大部分balancing方法都是reweight BCE从而使得稀有的instance-label对能够得到得到合理的“关注”
 ```
 ```
@@ -95,7 +95,7 @@ class BCELosswithLogits(nn.Module):
 ### Focal Loss（FL）
 ```
 动机：如何 让 稀有的instance-label对能够得到得到合理的“关注”？
-方法思路：通过 给 hard-to-classify” instances 分配更高的权值；
+方法思路：通过给 hard-to-classify” instances分配更高的权值；
 ```
 
 ```
