@@ -1,4 +1,5 @@
 # Bert
+# [Bert Code]()
 ## 演变史
 ### one-hot存在的问题
 ```
