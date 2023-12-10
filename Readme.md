@@ -1,8 +1,8 @@
 # Algorithm Learning 算法修炼之路
 ## NLP
 1. [Transformer](https://github.com/Hlufies/Algorithm_Learning/blob/main/Code/Transformer)
-1. [Bert]([https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Bert.md](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Bert.md))
-2. [Distilling]([https://github.com/Hlufies/Algorithm_Learning/blob/main/Files/model_Distilling.md](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Distillation.md))
+1. [Bert](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Bert.md)
+2. [Distilling](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Distillation.md)
 3. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
 
 ## CV
