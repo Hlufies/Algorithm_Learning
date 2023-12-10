@@ -2,6 +2,9 @@
 ## NLP
 1. [Bert](https://github.com/Hlufies/Algorithm_Learning/blob/main/Files/Bert.md)
 2. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
+
+## CV
+1. Diffusion
 ## Watermarking
 1. [Model-Watermark](https://github.com/Hlufies/Model-Watermark.git)
 2. [LLM-Watermark](https://github.com/zhaojunGUO/Awesome-LLM-Watermark.git)
