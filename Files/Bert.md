@@ -40,3 +40,12 @@ BERT（Bidirectional Encoder Representations from Transformers）是一种Transf
 ```
 ### Bert表征学习
 #### Bert 输入输出表征长啥样
+
+### Bert模型压缩
+```
+低秩因式分解
+参数共享
+知识蒸馏
+剪枝
+量化
+```
