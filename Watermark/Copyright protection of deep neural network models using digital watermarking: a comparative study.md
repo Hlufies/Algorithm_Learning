@@ -65,3 +65,55 @@ DNN 在这些不同领域取得了惊人的进展，但训练此类 DNN 模型�
 ```
 
 # Watermarking deep neural network models
+```
+他们提出了 DNN 的保护模型。该模型的目的是通过嵌入数字水印来实现DNN的版权保护。他们使用参数正则化器将水印嵌入到 DNN 模型中。他们证明，嵌入水印后 DNN 模型的性能不会降低。而且，经过参数修剪或微调后，水印并没有消失。即使修剪了 65% 的参数，水印仍然存在。
+Uchida Y, Nagai Y, Sakazawa S (2017) Embedding watermarks into deep neural networks. In: Proceedings of the 2017 ACM on international conference on multimedia retrieval, pp 269–277
+```
+
+从头开始训练 DNN 需要大量的训练步骤和大量的数据。因此，有时，当没有足够的训练数据时，**微调现有模型会更容易**。一般来说，如果数据集与预训练模型所训练的数据集在上下文上没有不同，那么微调将是一个不错的选择。因此，对于抄袭者来说，微调可以被认为是一种非常有效的方法，**可以使用先前窃取的模型和较少的新训练数据来训练新模型**。最终，新车型继承了被盗车型的性能。然而，它看起来与被盗模型不同。
+```
+微调阶段
+
+微调数据：数据的保护
+微调模型：原始模型的保护
+
+攻击手段：数据攻击
+模型攻击：去掉原始模型的内容
+```
+```
+Digital watermarking for deep neural networks.
+...
+```
+
+# Discussion and comparative analysis
+## Embedding watermark into weights of DNN
+```
+Watermark is embedded into weights. Alteration is done in the model’s parameters directly.
+Watermark is embedded in one of the convolutional layers. The modification is done in the model’s parameters.
+```
+## Embedding watermark into pdf of DNN
+```
+水印被嵌入到每个中间层和输出层获得的激活集的pdf中
+我们的提案对[60]进行了增强。它是将水印嵌入到每个中间层和输出层获得的激活集的pdf中，但使用其他优化器而不是SGD优化器。
+
+Accuracy of the [13] framework against the fine-tuning attack using several optimizers on CIFAR10CNN dataset
+```
+
+
+## 攻击手段
+```
+覆盖攻击
+剪枝+微调
+传统水印攻击
+
+指标：bit error rate
+```
+
+```
+deepstego
+DCT-QIM
+DeepSign
+通过误差反向传播在深度神经网络中添加水印。
+通过水印保护深度神经网络的知识产权
+使用水印保护深度神经网络的 IP：新标签有帮助
+```
