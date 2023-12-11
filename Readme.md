@@ -13,6 +13,7 @@
 1. Text Classification 
 2. NLI(natural language inference)
 3. NER(Named Entity Recognition)
+4. 
    ------------------------------------------------------------------------------------------------------
 
 ## CV
