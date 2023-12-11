@@ -140,3 +140,6 @@ def focal_loss(logits, labels, alpha, gamma):
     return loss
 
 ```
+### Class-balanced focal loss
+### Distribution-balanced loss
+
