@@ -23,6 +23,9 @@
 2. [LLM-Watermark](https://github.com/zhaojunGUO/Awesome-LLM-Watermark.git)
 3. [Watermark-Learning](https://github.com/20110240069/Watermark-Learning-Resources.git)
 
+   ------------------------------------------------------------------------------------------------------
+1. [Copyright protection of deep neural network models using digital watermarking: a comparative study]()
+
 ## Blogs
 1. [2023.12.11 压缩即智能](https://github.com/Hlufies/Algorithm_Learning/blob/main/Blogs/%E5%8E%8B%E7%BC%A9%E5%8D%B3%E6%99%BA%E8%83%BD%202023.12.11.md)
 ## 面经集合
