@@ -17,7 +17,8 @@
    ------------------------------------------------------------------------------------------------------
 
 ## CV
-1. Diffusion
+1. [Diffusion]
+2. [对比学习]()
 ## Watermarking
 1. [Model-Watermark](https://github.com/Hlufies/Model-Watermark.git)
 2. [LLM-Watermark](https://github.com/zhaojunGUO/Awesome-LLM-Watermark.git)
