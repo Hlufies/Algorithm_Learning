@@ -5,9 +5,14 @@
 2. [Muiti Label and Multi Class](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Multi%20label%20and%20Multi%20class.md)
 3. [CFR]()
 4. [Distilling](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Distillation.md)
-5. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
+5. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)  
    ------------------------------------------------------------------------------------------------------
-7. NER
+
+Tasks:
+1. Text Classification 
+2. NLI(natural language inference)
+3. NER(Named Entity Recognition)
+
 
 ## CV
 1. Diffusion
