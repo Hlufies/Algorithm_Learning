@@ -23,6 +23,8 @@
 2. [LLM-Watermark](https://github.com/zhaojunGUO/Awesome-LLM-Watermark.git)
 3. [Watermark-Learning](https://github.com/20110240069/Watermark-Learning-Resources.git)
 
+## Blogs
+### [2023.12.11 压缩即智能]()
 ## 面经集合
 1. [NLP](https://github.com/Hlufies/Algorithm_Learning/tree/main) | [CV ]() | [大模型]() | [多模态]() | [Prompt](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md) | [GPT]() | [SD](https://github.com/Hlufies/Algorithm_Learning/blob/main/SD.md) ]问题
 2. 项目问题
