@@ -6,6 +6,7 @@
 3. [CFR]()
 4. [Distilling](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Distillation.md)
 5. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
+6. [大模型的隐患]()
    
    ------------------------------------------------------------------------------------------------------
 
