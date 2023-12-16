@@ -22,7 +22,7 @@
 
 ## CV
 1. [Diffusion]
-2. [对比学习]()
+2. [对比学习](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0.md)
 ## Watermarking
 1. [Model-Watermark](https://github.com/Hlufies/Model-Watermark.git)
 2. [LLM-Watermark](https://github.com/zhaojunGUO/Awesome-LLM-Watermark.git)
