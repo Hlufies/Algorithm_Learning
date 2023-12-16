@@ -56,14 +56,13 @@ LtM 带来了多项提升：
 ```
 
 # Dealing With Long Form Content  
-  1. Processing the Text
-     
+  1. Processing the Text  
     ```
     Removing unnecessary sections or paragraphs that are not relevant or contribute to the main message. This can help to prioritize the most important content.
     Summarizing the text by extracting key points or using automatic summarization techniques. This can provide a concise overview of the main ideas.
     ```
-    
-  3. Chunking and Iterative Approach
+
+  2. Chunking and Iterative Approach
      
     ```
     可以将其划分为更小的块或部分，而不是一次将整个长格式内容提供给模型。
@@ -84,6 +83,7 @@ LtM 带来了多项提升：
     ```
 
   7. Utilizing AI assistants with longer context support
+     
      ```
       处理长格式内容可能很有挑战性，但通过采用这些策略，您可以在语言模型的帮助下有效地管理和浏览内容。记住要试验、迭代和完善您的方法，以确定最有效的策略来满足您的特定需求。
      ```
