@@ -33,6 +33,7 @@ Wang 等人讨论了一种更复杂的边缘化推理路径方法，该方法涉
 备注
 The knowledge corresponding to the selected answer is called the selected knowledge. 与所选答案对应的知识称为“精选知识”。
 ```
+
 # 最少到最多提示过程
 ```
 最少到最多提示过程 (Least to Most prompting, LtM)1 将思维链提示过程 (CoT prompting) 进一步发展，首先将问题分解为子问题，然后逐个解决。
@@ -41,6 +42,7 @@ The knowledge corresponding to the selected answer is called the selected knowle
 与思维链不同的是，先前子问题的解决方案被输入到提示中，以尝试解决下一个问题。
 ```
 <img width="512" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/f55e9148-82fd-4ba1-b9bb-1252000ea440">
+
 ```
 结论
 LtM 带来了多项提升：
@@ -50,6 +52,7 @@ LtM 带来了多项提升：
 在组合泛化方面的性能得到了显著提高，特别是在SCAN基准测试3中
 使用 text-davinci-002（论文中使用的模型）的标准提示解决了 6% 的 SCAN 问题，而 LtM 提示则取得了惊人的 76% 的成功率。在 code-davinci-002 中，结果更为显著，LtM 达到了 99.7% 的成功率。
 ```
+
 # Dealing With Long Form Content  
   1. Processing the Text
     ```
