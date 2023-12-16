@@ -8,6 +8,7 @@
 # 零样本思维链(Zero Shot Chain of Thought，Zero-shot-CoT)
 完整的零样本思维链过程涉及两个单独的提示/补全结果  
 <img width="399" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/a1a07abf-16cc-4ef5-bfbc-7326eabbccf3">
+
 ```
 Kojima等人尝试了许多不同的零样本思维链提示（例如“让我们按步骤解决这个问题。”或“让我们逻辑思考一下。”），但他们发现“让我们一步一步地思考”对于他们选择的任务最有效。
 提取步骤通常必须针对特定任务，使得零样本思维链的泛化能力不如它一开始看起来的那样强。
@@ -24,9 +25,10 @@ Wang 等人讨论了一种更复杂的边缘化推理路径方法，该方法涉
 ```
 
 # Generated Knowledge Approach
-生成的知识方法（Generated Knowledge Approach）1要求LLM 在生成响应之前生成与问题相关的可能有用的信息。
-该方法由两个中间步骤组成，即**知识生成**和**知识集成**。
+生成的知识方法（Generated Knowledge Approach）1要求LLM 在生成响应之前生成与问题相关的可能有用的信息。  
+该方法由两个中间步骤组成，即**知识生成**和**知识集成**。  
 <img width="561" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/dad8bf98-c292-4d7f-870f-219756455073">
+
 ```
 结论
 这种方法显示了对各种常识数据集的改进。
@@ -55,18 +57,23 @@ LtM 带来了多项提升：
 
 # Dealing With Long Form Content  
   1. Processing the Text
+     
     ```
     Removing unnecessary sections or paragraphs that are not relevant or contribute to the main message. This can help to prioritize the most important content.
     Summarizing the text by extracting key points or using automatic summarization techniques. This can provide a concise overview of the main ideas.
     ```
-  2. Chunking and Iterative Approach
+    
+  3. Chunking and Iterative Approach
+     
     ```
     可以将其划分为更小的块或部分，而不是一次将整个长格式内容提供给模型。
     这些块可以单独处理，允许模型一次专注于特定的部分。
     可以采用迭代方法来处理长格式内容。该模型可以为每个文本块生成响应，生成的输出可以作为下一个块的输入的一部分。
     这样，与语言模型的对话可以以循序渐进的方式进行，有效地管理对话的长度。
     ```
-  3. Post-processing and Refining Responses
+    
+  5. Post-processing and Refining Responses
+   
     ```
     模型生成的初始响应可能很长或包含不必要的信息。对这些响应执行后处理以细化和浓缩它们是很重要的。
     一些后处理技术包括：
@@ -75,10 +82,12 @@ LtM 带来了多项提升：
     c. 重新组织应对措施，以提高清晰度和连贯性。
     通过细化响应，可以使生成的内容更加简洁易懂。
     ```
-  4. Utilizing AI assistants with longer context support
-  5. Code libraries
-  6. Conclusion
+
+  7. Utilizing AI assistants with longer context support
+  8. Code libraries
+  9. Conclusion
   [LangChain](https://github.com/langchain-ai/langchain)
+
   ```
   处理长格式内容可能很有挑战性，但通过采用这些策略，您可以在语言模型的帮助下有效地管理和浏览内容。记住要试验、迭代和完善您的方法，以确定最有效的策略来满足您的特定需求。
   ```
