@@ -88,7 +88,7 @@ LtM 带来了多项提升：
       处理长格式内容可能很有挑战性，但通过采用这些策略，您可以在语言模型的帮助下有效地管理和浏览内容。记住要试验、迭代和完善您的方法，以确定最有效的策略来满足您的特定需求。
      ```
   9. Code libraries
-  10. Conclusion
+  10. Conclusion  
   [LangChain](https://github.com/langchain-ai/langchain)
 
 # Revisiting Roles
