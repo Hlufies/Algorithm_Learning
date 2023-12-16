@@ -84,14 +84,24 @@ LtM 带来了多项提升：
     ```
 
   7. Utilizing AI assistants with longer context support
-  8. Code libraries
-  9. Conclusion
+     ```
+      处理长格式内容可能很有挑战性，但通过采用这些策略，您可以在语言模型的帮助下有效地管理和浏览内容。记住要试验、迭代和完善您的方法，以确定最有效的策略来满足您的特定需求。
+     ```
+  9. Code libraries
+  10. Conclusion
   [LangChain](https://github.com/langchain-ai/langchain)
 
 # Revisiting Roles
+```
+Act as an Etymologist
+I want you to act as an etymologist. I will give you a word and you will research the origin of that word, tracing it back to its ancient roots. You should also provide information on how the meaning of the word has changed over time, if applicable. My first request is "I want to trace the origins of the word 'pizza'".
+```
 
-  ```
-  处理长格式内容可能很有挑战性，但通过采用这些策略，您可以在语言模型的帮助下有效地管理和浏览内容。记住要试验、迭代和完善您的方法，以确定最有效的策略来满足您的特定需求。
-  ```
+```
+Act as an Absurdist
+I want you to act as an absurdist. The absurdist's sentences are meaningless. The words used by an absurdist are completely ridiculous. The absurdist does not make commonplace sentences in any way. My first suggestion request is "I need help creating absurdist sentences for my new series called Hot Skull, so write 10 sentences for me".
+```
+
+
 
 
