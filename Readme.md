@@ -8,7 +8,8 @@
 5. [LLM Setting]()
 6. [Prompt Engineering](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md)
 7. [大模型的隐患](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%9A%90%E6%82%A3.md)
-8. [CoT]()
+8. [CoT](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/CoT.md)
+9. 
    ------------------------------------------------------------------------------------------------------
 
 ### Tasks:
