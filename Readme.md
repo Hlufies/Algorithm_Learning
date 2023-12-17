@@ -37,7 +37,7 @@
 ## Blogs
 1. [2023.12.11 压缩即智能](https://github.com/Hlufies/Algorithm_Learning/blob/main/Blogs/%E5%8E%8B%E7%BC%A9%E5%8D%B3%E6%99%BA%E8%83%BD%202023.12.11.md)
 ## 面经集合
-1. [NLP](https://github.com/Hlufies/Algorithm_Learning/tree/main) | [CV ]() | [大模型]() | [多模态]() | [Prompt](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md) | [GPT]() | [SD](https://github.com/Hlufies/Algorithm_Learning/blob/main/SD.md) ]问题
+1. [NLP](https://github.com/Hlufies/Algorithm_Learning/tree/main) | [CV ]() | [大模型]() | [多模态]() | [Prompt](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md) | [GPT]() | [SD](https://github.com/Hlufies/Algorithm_Learning/blob/main/SD.md) | 问题
 2. 项目问题
 3. [算法问题](https://github.com/Hlufies/Algorithm_Learning/blob/main/%E7%AE%97%E6%B3%95%E9%97%AE%E9%A2%98.md)
 4. 计算机体系问题
