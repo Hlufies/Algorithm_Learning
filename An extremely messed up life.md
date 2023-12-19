@@ -106,3 +106,7 @@ Let me retreat to the past, no longer thinking about the future.
 
 (I don't know if the wall can be posted on a few more times for her to see. She might be too silly to look at these. Her name is WS, a simpleton. If any friend knows her, could you please pass this on to her, as my impolite request?)'
 ```
+#### Second journal entry
+```
+I cannot heal the fragility in my heart, nor can I erase the pain of others. Superfluous words cannot change the outcome, and cumbersome text cannot convey true emotions
+```
