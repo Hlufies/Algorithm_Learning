@@ -4,7 +4,7 @@
 #### Firstly, I need to tell you about the diaries and letters from before. Then, please tell me, can you recall any of it? Or how much can you remember?
 #### The first post goes like this, 
 ```
-'Wall: Posting in the hopes that she'll see it.
+Posting in the hopes that she'll see it.
 
 I'm a guy from the neighboring Chongqing University of Posts and Telecommunications.
 
