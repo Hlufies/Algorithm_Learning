@@ -1,5 +1,6 @@
 # Bert
-# [Bert Code]()
+# [Bert Code](https://github.com/Hlufies/Algorithm_Learning/tree/main/Code/Bert)
+# [Bert 各向异性]()
 ## 演变史
 ### one-hot存在的问题
 ```
