@@ -156,3 +156,62 @@ Prompt 是一种为了更好的使用预训练语言模型的知识，采用在�
   是否有个超大的 Left-to-right 的语言模型
 （注：通常如果只有很少的数据的时候，往往希望不要去 fine-tune 预训练语言模型，而是使用LM的超强能力，只是去调prompt 参数。而让数据量足够多的时候，可以精调语言模型。）
   ```
+## Prompt进阶
+### p-tuning
+  ```
+  token+vector组合成prompt
+  ```
+  ```
+  动机：手工设计prompt（基于token的prompt）存在问题，那么是否可以引入（基于vector的prompt），所以就有了 基于 token+vector 的 prompt
+  具体说明（如下图）：
+  任务：模型来预测一个国家的首都
+  左边是全token的prompt，文献里称为“离散的prompt”，有的同学一听"离散"就感觉懵了，其实就是一个一个token组成的prompt就叫“离散的prompt”。
+  右边是token+vector形式的prompt，其实是保留了原token prompt里面的关键信息(capital, Britain)，(capital, Britain)是和任务、输出结果最相关的信息，其他不关键的词汇(the, of ,is)留给模型来学习。
+  token形式的prompt: “The captital of Britain is [MASK]”
+  token+vector: “h_0 , h_1, ... h_i, captital, Britain, h_(i+1), ..., h_m [MASK]”
+  ```
+![image](https://github.com/Hlufies/Algorithm_Learning/assets/130231524/5e5ebfc1-2e06-4eaf-9403-7d1d286efd22)
+### p-tuning v2
+  ```
+  ```
+### ppt
+  ```
+  ```
+## prompt 优势与总结
+![Uploading image.png…]()
+### Level 1. Prompt Learning 使得所有的NLP任务成为一个语言模型的问题
+  ```
+  Prompt Learning 可以将所有的任务归一化预训练语言模型的任务
+  避免了预训练和fine-tuning 之间的gap，几乎所有 NLP 任务都可以直接使用，不需要训练数据。
+  在少样本的数据集上，能取得超过fine-tuning的效果。
+  使得所有的任务在方法上变得一致
+  ```
+  ![Uploading image.png…]()
+### Level 2. Prompt Learning 和 Fine-tuning 的范式区别
+  ```
+  Fine-tuning 是使得预训练语言模型适配下游任务
+  Prompting 是将下游任务进行任务重定义，使得其利用预训练语言模型的能力，即适配语言模型
+  ```
+### Level 3. 现代 NLP 第四范式
+  ```
+  Prompting 方法是现在NLP的第四范式。其中现在NLP的发展史包含
+
+    Feature Engineering：即使用文本特征，例如词性，长度等，在使用机器学习的方法进行模型训练。（无预训练语言模型）
+    Architecture Engineering：在W2V基础上，利用深度模型，加上固定的embedding。（有固定预训练embedding，但与下游任务无直接关系）
+    Objective Engineering：在bert 的基础上，使用动态的embedding，在加上fine-tuning。（有预训练语言模型，但与下游任务有gap）
+    Prompt Engineering：直接利用与训练语言模型辅以特定的prompt。（有预训练语言模型，但与下游任务无gap）
+  我们可以发现，在四个范式中，预训练语言模型，和下游任务之间的距离，变得越来越近，直到最后Prompt Learning是直接完全利用LM的能力。
+  ```
+### Level 4. 超越NLP
+  ```
+  Prompt 可以作为连接多模态的一个契机，例如 CLIP 模型，连接了文本和图片。相信在未来，可以连接声音和视频，这是一个广大的待探索的领域。
+  ```
+##  prompt 总结
+```
+prompt设计：可以手动设计模板，也可以自动学习prompt，这里可填坑的地方比较多；
+预训练模型的选择：选择跟任务贴近的预训练模型即可；
+预测结果到label的映射：如何设计映射函数，这里可填坑的地方也比较多
+训练策略：根据prompt是否有参数，预训练模型参数要不要调，可以组合出各种训练模式，根据标注数据样本量，选择zero-shot, few-shot还是full-data。比如few-shot场景，训练数据不多，如果prompt有参数，可以固定住预训练模型的参数，只调prompt的参数，毕竟prompt参数量少嘛，可以避免过拟合。
+```
+
+
