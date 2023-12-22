@@ -1,4 +1,4 @@
-'''
+```
 def get_weighted_text_embeddings(
     tokenizer,
     text_encoder,
@@ -8,35 +8,34 @@ def get_weighted_text_embeddings(
     no_boseos_middle: Optional[bool] = False,
     clip_skip=None,
 ):
-    r"""
-    Prompts can be assigned with local weights using brackets. For example,
-    prompt 'A (very beautiful) masterpiece' highlights the words 'very beautiful',
-    and the embedding tokens corresponding to the words get multiplied by a constant, 1.1.
-
-    Also, to regularize of the embedding, the weighted embedding would be scaled to preserve the original mean.
-
-    Args:
-        prompt (`str` or `List[str]`):
-            The prompt or prompts to guide the image generation.
-        max_embeddings_multiples (`int`, *optional*, defaults to `3`):
-            The max multiple length of prompt embeddings compared to the max output length of text encoder.
-        no_boseos_middle (`bool`, *optional*, defaults to `False`):
-            If the length of text token is multiples of the capacity of text encoder, whether reserve the starting and
-            ending token in each of the chunk in the middle.
-        skip_parsing (`bool`, *optional*, defaults to `False`):
-            Skip the parsing of brackets.
-        skip_weighting (`bool`, *optional*, defaults to `False`):
-            Skip the weighting. When the parsing is skipped, it is forced True.
     """
+    根据给定的文本提示，生成加权文本嵌入。
+
+    参数:
+        tokenizer: 用于将文本转换为令牌的分词器。
+        text_encoder: 文本编码器，用于将令牌转换为嵌入。
+        prompt: 用于指导图像生成的文本提示，可以是单个字符串或字符串列表。
+        device: 计算设备，如 CPU 或 GPU。
+        max_embeddings_multiples: 提示嵌入的最大长度，相对于文本编码器最大输出长度的倍数，默认为3。
+        no_boseos_middle: 如果文本令牌长度是文本编码器容量的倍数，是否保留中间每个块的起始和结束令牌，默认为 False。
+        clip_skip: 跳过的剪辑长度，用于调整编码。
+
+    返回:
+        加权且规范化的文本嵌入。
+    """
+
+    # 计算最大嵌入长度
     max_length = (tokenizer.model_max_length - 2) * max_embeddings_multiples + 2
+
+    # 将单个字符串提示转换为列表
     if isinstance(prompt, str):
         prompt = [prompt]
 
+    # 获取带权重的提示和相应的权重
     prompt_tokens, prompt_weights = get_prompts_with_weights(tokenizer, prompt, max_length - 2)
 
-    # round up the longest length of tokens to a multiple of (model_max_length - 2)
+    # 计算最大嵌入长度
     max_length = max([len(token) for token in prompt_tokens])
-
     max_embeddings_multiples = min(
         max_embeddings_multiples,
         (max_length - 1) // (tokenizer.model_max_length - 2) + 1,
@@ -44,7 +43,7 @@ def get_weighted_text_embeddings(
     max_embeddings_multiples = max(1, max_embeddings_multiples)
     max_length = (tokenizer.model_max_length - 2) * max_embeddings_multiples + 2
 
-    # pad the length of tokens and weights
+    # 填充令牌和权重
     bos = tokenizer.bos_token_id
     eos = tokenizer.eos_token_id
     pad = tokenizer.pad_token_id
@@ -57,9 +56,11 @@ def get_weighted_text_embeddings(
         no_boseos_middle=no_boseos_middle,
         chunk_length=tokenizer.model_max_length,
     )
+
+    # 将令牌转换为张量
     prompt_tokens = torch.tensor(prompt_tokens, dtype=torch.long, device=device)
 
-    # get the embeddings
+    # 获取未加权的文本嵌入
     text_embeddings = get_unweighted_text_embeddings(
         tokenizer,
         text_encoder,
@@ -70,15 +71,18 @@ def get_weighted_text_embeddings(
         pad,
         no_boseos_middle=no_boseos_middle,
     )
+
+    # 将权重转换为张量
     prompt_weights = torch.tensor(prompt_weights, dtype=text_embeddings.dtype, device=device)
 
-    # assign weights to the prompts and normalize in the sense of mean
+    # 为提示赋予权重并规范化嵌入
     previous_mean = text_embeddings.float().mean(axis=[-2, -1]).to(text_embeddings.dtype)
     text_embeddings = text_embeddings * prompt_weights.unsqueeze(-1)
     current_mean = text_embeddings.float().mean(axis=[-2, -1]).to(text_embeddings.dtype)
     text_embeddings = text_embeddings * (previous_mean / current_mean).unsqueeze(-1).unsqueeze(-1)
 
+    # 返回加权且规范化的文本嵌入
     return text_embeddings
 
 
-'''
+```
