@@ -9,4 +9,4 @@
 
 ## SD prompt构建
 
-### [精细化控制]Prompt(https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/SD_Prompts.md)
+### [精细化控制Prompt](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/SD_Prompts.md)
