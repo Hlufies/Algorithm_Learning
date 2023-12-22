@@ -35,9 +35,11 @@ In this paper, we delve deep into the noise initialization of video diffusion mo
 <p align="center">
 <img width="702" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/8d4a6a93-6ee7-412f-a568-9af361c32c9f">
 </p>
+  
 ```
 本文提出了一种新颖的推理时间采样方法，表示为 FreeInit，以弥合训练和推理之间的初始化差距，而无需任何额外的训练或微调
 ```
+
 1. 首先初始化独立的高斯噪声，然后经过 DDIM 去噪过程以产生干净的视频潜伏。
 2. 通过前向扩散过程获得了生成的潜在视频的噪声版本(由于噪声潜伏是从去噪的干净潜伏中获得的，因此这些噪声潜伏的低频分量提高了时间一致性。)
 3. 对于这些噪声潜伏，我们通过将这些噪声潜伏的低频分量与随机高斯噪声的高频分量相结合来重新初始化噪声。
