@@ -1,8 +1,10 @@
-<img width="554" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/f1fb9bc7-fa27-49c7-ad9a-0fbf737e512e">  
+<img width="554" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/f1fb9bc7-fa27-49c7-ad9a-0fbf737e512e"> 
+
 ## Github链接：https://github.com/TianxingWu/FreeInit  
 <img width="702" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/e53a030c-03b1-4c73-a073-d6df08a4191c">  
+
 图 1. 用于视频生成的 FreeInit。我们提出了 FreeInit，这是一种简洁而有效的方法，可以显着提高扩散模型生成的视频的时间一致性。 FreeInit 不需要额外的训练，也不需要引入可学习的参数，并且可以在推理时轻松地合并到任意视频扩散模型中。  
-## Abstract
+## Abstract  
 ```
 In this paper, we delve deep into the noise initialization of video diffusion models, and discover an implicit training-inference gap that attributes to the unsatisfactory inference quality.
 在本文中，我们深入研究了视频扩散模型的噪声初始化，并发现了隐含的训练推理差距，该差距归因于推理质量不佳。
