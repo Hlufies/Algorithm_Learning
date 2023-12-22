@@ -1,4 +1,6 @@
-<img width="554" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/f1fb9bc7-fa27-49c7-ad9a-0fbf737e512e"#pic_center> 
+<p align="center">
+<img width="554" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/f1fb9bc7-fa27-49c7-ad9a-0fbf737e512e"> 
+</p>
 
 ## Github链接：https://github.com/TianxingWu/FreeInit  
 <img width="702" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/e53a030c-03b1-4c73-a073-d6df08a4191c">  
