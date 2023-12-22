@@ -3,7 +3,9 @@
 </p>
 
 ## Github链接：https://github.com/TianxingWu/FreeInit  
-<img width="702" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/e53a030c-03b1-4c73-a073-d6df08a4191c">  
+<p align="center">
+<img width="702" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/e53a030c-03b1-4c73-a073-d6df08a4191c"> 
+  </p>
 
 图 1. 用于视频生成的 FreeInit。我们提出了 FreeInit，这是一种简洁而有效的方法，可以显着提高扩散模型生成的视频的时间一致性。 FreeInit 不需要额外的训练，也不需要引入可学习的参数，并且可以在推理时轻松地合并到任意视频扩散模型中。  
 ## Abstract  
@@ -19,6 +21,19 @@ In this paper, we delve deep into the noise initialization of video diffusion mo
 通过迭代细化推理过程中初始潜在变量的时空低频分量，FreeInit 能够补偿训练和推理之间的初始化差距，从而有效提高生成结果的主体外观和时间一致性。
 大量实验表明，FreeInit 能够持续增强各种文本到视频生成模型的生成结果，而无需额外训练。
 ```
+# Introduction  
+```
+与基于图像的扩散模型类似，在训练视频扩散模型时，在扩散过程中逐渐将高斯噪声添加到输入视频中，旨在将其破坏为噪声。
+然后在去噪过程中，扩散模型学习预测噪声并从噪声状态重建原始干净的视频。
+最终在推理阶段，该模型的任务是通过从纯高斯噪声开始迭代去噪来合成视频
+```
+***然而，训练时损坏的潜在变量与推理时的高斯初始噪声之间存在差距。***   
+**扩散过程不会将干净的latents完全破坏为纯高斯噪声**  
+在图 2 中，我们可视化在多个扩散步骤中从噪声潜伏解码的帧，并应用时空频率分解来分析不同频带上的损坏。值得注意的是，与高频分量相比，低频分量的损坏速度要低得多。**因此，最后一个时间步 (t=1000) 的噪声潜伏仍然包含来自干净输入视频的大量低频信息**。  
+这最终导致推理时的隐含差距：一方面，由于干净的输入帧本质上是时间相关的，因此它们在训练时的噪声潜伏也将是时间相关的，特别是在它们的低频段，这明显不同于推理时的高斯初始噪声。另一方面，推理时的初始噪声，尤其是其低频分量，可以极大地影响生成质量，如图 5、6 中的观察结果所示。因此，当将使用相关初始噪声训练的扩散模型应用于非推理时相关高斯初始噪声，性能恶化。  
+<p align="center">
+<img width="702" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/8d4a6a93-6ee7-412f-a568-9af361c32c9f">
+</p>
 
 
 
