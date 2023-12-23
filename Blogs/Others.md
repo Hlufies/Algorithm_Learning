@@ -77,6 +77,21 @@ In essence, 'The Story of an Hour' is not just a tale of a woman's longing for f
 
 -------------------------------------------
 
+# The Lottery
+author: Shirley Jackson
+roles:
+Tessie Hutchinson（特西·哈钦森）：特西是故事的主要角色之一。她是小村庄中的一位妇女，她与她的家人一起参加了年度抽奖活动。然而，在抽奖结果出来后，她成为了这次令人不安的活动的牺牲品。  
+
+Mr. Summers（桑默斯先生）：桑默斯先生是年度抽奖活动的主持人，他负责组织和管理这个活动。他是村庄中的一个权威人物。  
+
+Bill Hutchinson（比尔·哈钦森）：比尔是特西的丈夫，他也参加了抽奖活动。他的家庭最终成为了抽奖的目标。  
+
+Old Man Warner（沃纳老人）：沃纳老人是村庄中的一位长者，他坚定地支持并参加年度抽奖活动。他认为抽奖是为了保持社会秩序和传统。  
+
+Hutchinson Family（哈钦森家族）：特西和比尔的家庭成为了这次抽奖的牺牲品。他们的家庭成员包括他们自己以及他们的子女。  
+
+-------------------------------------------
+
 # Lord of the Flies
 author: William Golding.   
 roles: Ralph, Piggy, Jack, Simon      
