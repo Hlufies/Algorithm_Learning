@@ -55,9 +55,9 @@ Using the lens of post-colonialism to interpret these questions from E.M. Forste
 
 -------------------------------------------
 
-"Robinson Crusoe" 
-author: Daniel Defoe
-roles: Robinson Crusoe
+"Robinson Crusoe"   
+author: Daniel Defoe  
+roles: Robinson Crusoe  
 
 -------------------------------------------
 
