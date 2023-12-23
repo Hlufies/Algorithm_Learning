@@ -88,7 +88,31 @@ Bill Hutchinson（比尔·哈钦森）：比尔是特西的丈夫，他也参加
 
 Old Man Warner（沃纳老人）：沃纳老人是村庄中的一位长者，他坚定地支持并参加年度抽奖活动。他认为抽奖是为了保持社会秩序和传统。  
 
-Hutchinson Family（哈钦森家族）：特西和比尔的家庭成为了这次抽奖的牺牲品。他们的家庭成员包括他们自己以及他们的子女。  
+Hutchinson Family（哈钦森家族）：特西和比尔的家庭成为了这次抽奖的牺牲品。他们的家庭成员包括他们自己以及他们的子女。
+
+
+
+
+《The Lottery》是莎莉·杰克逊（Shirley Jackson）创作的短篇小说，讲述了一个小村庄每年举行的抽奖活动，其中一个村民会被选中成为牺牲品，被石头砸死。以下是故事的总结以及一个适用的理论解释：  
+
+故事总结：  
+在一个小村庄，每年的6月27日，村民们聚集在一起进行一项称为“抽奖”的仪式。他们从一个黑盒子中抽取纸片，其中一张被标记为“黑点”的纸片，代表了抽中的幸运者。今年，特西·哈钦森成为了幸运者，但她开始抗拒这一命运，声称抽奖不公平。然而，村民们对抽奖的传统非常坚守，他们最终用石头砸死了特西作为祭品，以确保好丰收。  
+
+理论解释：  
+这个故事可以用社会学家艾米尔·杜尔凯姆（Émile Durkheim）的功能主义理论来解释。功能主义理论关注社会中不同元素的功能和角色，以及它们对社会的影响。在《The Lottery》中，抽奖仪式代表了社会中的一种仪式和传统。  
+
+
+In Shirley Jackson's short story "The Lottery," a seemingly idyllic small village gathers each year on June 27th to conduct a ritualistic lottery. The day begins with a cheerful and ordinary atmosphere as children collect stones and adults engage in casual conversation. The lottery itself appears to be a harmless tradition, but as the story unfolds, it takes a dark and chilling turn.  
+
+The central characters in the story are the villagers, and Tessie Hutchinson emerges as the focus as her family is selected in the lottery. As the tension builds, Tessie protests vehemently, claiming that the process is unfair. However, her protests fall on deaf ears as the villagers, including her own family members, turn against her. The ultimate outcome of the lottery is Tessie's stoning to death, a brutal act carried out by her own community.  
+
+Shirley Jackson masterfully employs symbolism throughout the narrative. The black box represents tradition and the unyielding nature of rituals, as it has been in use for generations. The stones the villagers use to kill Tessie symbolize the villagers' collective responsibility, as everyone plays a part in her death. Furthermore, the story's title itself, "The Lottery," evokes a sense of randomness and chance, emphasizing the arbitrary nature of violence and cruelty within societies.  
+
+From a sociological perspective, "The Lottery" can be analyzed through the functionalist theory, particularly drawing parallels to Émile Durkheim's ideas. The village's annual ritual serves as a means of reinforcing social cohesion and maintaining a collective conscience. It reinforces the importance of adhering to tradition and shared values, even if those values involve extreme violence. The lottery, in this context, becomes a mechanism for preserving social order and unity.  
+
+However, Jackson's story also serves as a powerful critique of blind conformity and the dangers of unquestioningly following tradition. The villagers' willingness to sacrifice one of their own demonstrates the oppressive nature of social norms and the potential for cruelty that can emerge from collective thinking.  
+ 
+In conclusion, "The Lottery" is a thought-provoking and unsettling narrative that explores the dark side of tradition and conformity within a small community. It forces readers to question the extent to which they may be complicit in societal practices and traditions that perpetuate cruelty and injustice. Shirley Jackson's storytelling skillfully blends the ordinary and the horrifying, leaving readers with a haunting and enduring tale of the human capacity for both kindness and cruelty.  
 
 -------------------------------------------
 
