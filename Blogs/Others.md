@@ -14,5 +14,4 @@ Additionally, Jack's disrespect for Piggy and his challenge to Ralph's leadershi
 
 'The Mind of the Crowds' also plays a crucial role in "Lord of the Flies." The children's extreme behavior under group pressure and collective fear, such as the fear of the "beast," leads to a loss of rationality. This reflects how group psychology can influence individual behavior, leading to irrational decisions and tragic outcomes.  
 
-In summary, "Lord of the Flies," through the conflict between Ralph and Jack and the demonstration of group psychology, profoundly explores how, in extreme environments without mature social structures, the barbaric and violent tendencies in human nature can potentially override civilization and rationality. These elements together paint a complex picture of human nature, power, social order, and chaos.
 
