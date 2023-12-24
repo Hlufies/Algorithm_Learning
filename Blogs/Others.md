@@ -1,5 +1,5 @@
 # A Passage to India
-author: E. M. Forster  
+author: E. M. Forster    
 roles: Dr. Aziz, Cyril Fielding, Adela Quested, Mrs. Moore, Ronny Heaslop, Professor Godbole   
    
 "A Passage to India," viewed through a postcolonial lens, profoundly explores the cultural conflicts and the impact of colonial rule. The novel, particularly through the complex relationship between the Indian doctor Aziz and the Englishman Fielding, reveals issues of racial prejudice, cultural misunderstandings, and identity under colonialism. Social events in the novel, such as the 'Bridge Party,' reflect the stereotypical views and inequalities held by colonizers towards the colonized, as well as the challenges faced by the inhabitants of the colony under colonial rule. Moreover, the novel examines the influence of cultural differences on personal relationships, especially the possibilities and limitations of friendships in a colonial setting. Overall, "A Passage to India" presents a nuanced exploration of cultural clashes and personal identity during the colonial era, uncovering the profound effects of colonial history on interpersonal relationships and social structures.    
@@ -154,8 +154,8 @@ Existentialism, as discussed by Sartre, emphasizes individual freedom and choice
 In conclusion, "A Rose for Emily" is a rich and multi-layered narrative that lends itself to various literary theories. It serves as a powerful exploration of the human condition, the impact of history and tradition, and the consequences of isolation and stagnation. Faulkner's timeless storytelling continues to resonate with readers, inviting us to contemplate the complexities of the past and its enduring influence on the present.  
 
 # 了不起的盖茨比
-author: F. Scott Fitzgerald
-roles:
+author: F. Scott Fitzgerald  
+roles:  
 杰伊·盖茨比（Jay Gatsby）：小说的主要角色，是一个神秘的富翁。他用自己的方式追求着一个无法实现的梦想，即与他曾经爱过的女人黛西重逢。盖茨比以独特的方式积累财富，举办豪华派对，但内心孤独和迷失。
 
 尼克·卡拉韦（Nick Carraway）：小说的叙述者，也是故事中的一个关键人物。他搬到长岛的西蛋地区，成为了盖茨比的邻居，并在小说中记录了盖茨比的故事。尼克是一个观察者，他不仅描述了盖茨比的生活，还揭示了社会和道德层面的许多问题。
