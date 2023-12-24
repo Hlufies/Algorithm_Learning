@@ -127,7 +127,15 @@ roles:Emily Grierson
 
 故事以一个令人疑惑的事件开始，即艾米丽的死亡，而后通过回溯性叙述，逐渐揭示了她一生中的秘密和不寻常的行为，其中包括与一位北方建筑师的关系。故事的结尾揭示了令人震惊的真相。  
 
-《A Rose for Emily》被认为是一部具有深刻内涵的文学作品，涵盖了多个主题，包括孤独、失落、社会变革和传统的冲突。它常常被用来研究文学中的叙事技巧和人物塑造，以及美国南方文学的特点。  
+《A Rose for Emily》被认为是一部具有深刻内涵的文学作品，涵盖了多个主题，包括孤独、失落、社会变革和传统的冲突。它常常被用来研究文学中的叙事技巧和人物塑造，以及美国南方文学的特点。
+
+故事始于Emily Grierson的去世，她是一位隐居而神秘的女性。镇上对Emily既充满好奇又带有审判性，她的房子成为人们引起兴趣的来源。
+
+叙事随后回到过去，探索了Emily生命中的不同阶段。我们了解到她来自一个曾经声名显赫但已经日渐衰落的家庭。她的父亲控制欲强、专制，阻止她建立关系和结婚。在他去世后，Emily独自生活，镇上对她的孤独感到同情，但也对她的隐居持有批评态度。
+
+故事中最重要的部分围绕着Emily与Homer Barron的关系展开，他是一位来到镇上的北方工人。他们形成了一段不太可能的浪漫关系，而镇上却对此感到震惊。然而，Homer突然失踪，Emily再次孤独。
+
+随着故事的发展，揭示了一个令人震惊的事实：Emily在家中保存了Homer的尸体，多年来一直与尸体同眠。这个令人发指的秘密是在Emily去世后发现的，当她的房子被打开时。镇上既对这个可怕的秘密感到恶心，又被其吸引。  
 
 "A Rose for Emily" by William Faulkner is a captivating and haunting short story that delves into the complexities of the human psyche, societal change, and the passage of time. The narrative is masterfully crafted, with a non-linear structure that weaves together different periods of Emily Grierson's life, making it both intriguing and thought-provoking.  
 
