@@ -78,7 +78,7 @@ In essence, 'The Story of an Hour' is not just a tale of a woman's longing for f
 -------------------------------------------
 
 # The Lottery
-author: Shirley Jackson
+author: Shirley Jackson  
 roles:
 Tessie Hutchinson（特西·哈钦森）：特西是故事的主要角色之一。她是小村庄中的一位妇女，她与她的家人一起参加了年度抽奖活动。然而，在抽奖结果出来后，她成为了这次令人不安的活动的牺牲品。  
 
