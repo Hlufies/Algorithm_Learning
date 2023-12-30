@@ -11,17 +11,19 @@
         一个带噪声的样本（可能是图像或其它类型的二维数据），
         一个条件状态（这可能是一个额外的信息，用于指导或改变模型的行为），
         一个时间步（通常用于序列数据或动态过程，可能在这里用于指定处理的特定阶段）
-
+```
+```
     Parameters:
-        1. 样本是输入大小：height和width。sample_size (`int` or `Tuple[int, int]`, *optional*, defaults to `None`): Height and width of input/output sample.
-        2. 样本的输入通道：in_channels (`int`, *optional*, defaults to 4): Number of channels in the input sample.
-        3. 样本的输出通道：out_channels (`int`, *optional*, defaults to 4): Number of channels in the output.
-        4. 是否进行中心化处理：就让让数据范围在[-1,1]之间。center_input_sample (`bool`, *optional*, defaults to `False`): Whether to center the input sample.
-        5. 是否进行将time_embeding进行正弦和余弦翻转。因为time_embedding是由从一个正弦余弦组合的映射而来的，默认的组合是sin-cos。flip_sin_to_cos (`bool`, *optional*, defaults to `False`): Whether to flip the sin to cos in the time embedding.
-        6. 是否对time_embedding进行频移。freq_shift (`int`, *optional*, defaults to 0): The frequency shift to apply to the time embedding.
-        7. Unet中降采样模块的类型。默认情况下，元组包含四个元素，前三个是 "CrossAttnDownBlock2D"，最后一个是 "DownBlock2D"。
-            这表明在降采样阶段，默认使用三个 CrossAttnDownBlock2D 块，接着是一个 DownBlock2D 块。"CrossAttnDownBlock2D" 和 "DownBlock2D": 这些是特定类型的块。CrossAttnDownBlock2D 一个包含跨注意力机制的二维降采样块，而 DownBlock2D 则是一个更通用的二维降采样块。
-            down_block_types (`Tuple[str]`, *optional*, defaults to `("CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D")`): The tuple of downsample blocks to use.
+``` 
+1. 样本是输入大小：height和width。sample_size (`int` or `Tuple[int, int]`, *optional*, defaults to `None`): Height and width of input/output sample.  
+2. 样本的输入通道：in_channels (`int`, *optional*, defaults to 4): Number of channels in the input sample.  
+3. 样本的输出通道：out_channels (`int`, *optional*, defaults to 4): Number of channels in the output.  
+4. 是否进行中心化处理：就让让数据范围在[-1,1]之间。center_input_sample (`bool`, *optional*, defaults to `False`): Whether to center the input sample.  
+5. 是否进行将time_embeding进行正弦和余弦翻转。因为time_embedding是由从一个正弦余弦组合的映射而来的，默认的组合是sin-cos。flip_sin_to_cos (`bool`, *optional*, defaults to `False`): Whether to flip the sin to cos in the time embedding.  
+6. 是否对time_embedding进行频移。freq_shift (`int`, *optional*, defaults to 0): The frequency shift to apply to the time embedding.  
+7. Unet中降采样模块的类型。默认情况下，元组包含四个元素，前三个是 "CrossAttnDownBlock2D"，最后一个是 "DownBlock2D"。这表明在降采样阶段，默认使用三个 CrossAttnDownBlock2D 块，接着是一个 DownBlock2D 块。"CrossAttnDownBlock2D" 和 "DownBlock2D": 这些是特定类型的块。CrossAttnDownBlock2D 一个包含跨注意力机制的二维降采样块，而 DownBlock2D 则是一个更通用的二维降采样块。
+            down_block_types (`Tuple[str]`, *optional*, defaults to `("CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D")`): The tuple of downsample blocks to use.    
+````
         mid_block_type (`str`, *optional*, defaults to `"UNetMidBlock2DCrossAttn"`):
             Block type for middle of UNet, it can be either `UNetMidBlock2DCrossAttn` or
             `UNetMidBlock2DSimpleCrossAttn`. If `None`, the mid block layer is skipped.
