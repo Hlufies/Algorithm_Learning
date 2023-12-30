@@ -21,14 +21,12 @@
 4. 是否进行中心化处理：就让让数据范围在[-1,1]之间。center_input_sample (`bool`, *optional*, defaults to `False`): Whether to center the input sample.  
 5. 是否进行将time_embeding进行正弦和余弦翻转。因为time_embedding是由从一个正弦余弦组合的映射而来的，默认的组合是sin-cos。flip_sin_to_cos (`bool`, *optional*, defaults to `False`): Whether to flip the sin to cos in the time embedding.  
 6. 是否对time_embedding进行频移。freq_shift (`int`, *optional*, defaults to 0): The frequency shift to apply to the time embedding.  
-7. Unet中降采样模块的类型。默认情况下，元组包含四个元素，前三个是 "CrossAttnDownBlock2D"，最后一个是 "DownBlock2D"。这表明在降采样阶段，默认使用三个 CrossAttnDownBlock2D 块，接着是一个 DownBlock2D 块。"CrossAttnDownBlock2D" 和 "DownBlock2D": 这些是特定类型的块。CrossAttnDownBlock2D 一个包含跨注意力机制的二维降采样块，而 DownBlock2D 则是一个更通用的二维降采样块。  
-down_block_types (`Tuple[str]`, *optional*, defaults to `("CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D")`): The tuple of downsample blocks to use.    
-````
-        mid_block_type (`str`, *optional*, defaults to `"UNetMidBlock2DCrossAttn"`):
+7. Unet中降采样模块的类型。默认情况下，元组包含四个元素，前三个是 "CrossAttnDownBlock2D"，最后一个是 "DownBlock2D"。down_block_types (`Tuple[str]`, *optional*, defaults to `("CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D")`): The tuple of downsample blocks to use.
+8. Unet中的中间架构类型。 mid_block_type (`str`, *optional*, defaults to `"UNetMidBlock2DCrossAttn"`):
             Block type for middle of UNet, it can be either `UNetMidBlock2DCrossAttn` or
-            `UNetMidBlock2DSimpleCrossAttn`. If `None`, the mid block layer is skipped.
-        up_block_types (`Tuple[str]`, *optional*, defaults to `("UpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D")`):
-            The tuple of upsample blocks to use.
+            `UNetMidBlock2DSimpleCrossAttn`. If `None`, the mid block layer is skipped.  
+9. Unet中的上采样模块类型。up_block_types (`Tuple[str]`, *optional*, defaults to `("UpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D")`): The tuple of upsample blocks to use.  
+````          
         only_cross_attention(`bool` or `Tuple[bool]`, *optional*, default to `False`):
             Whether to include self-attention in the basic transformer blocks, see
             [`~models.attention.BasicTransformerBlock`].
