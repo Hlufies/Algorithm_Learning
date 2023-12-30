@@ -26,13 +26,10 @@
             Block type for middle of UNet, it can be either `UNetMidBlock2DCrossAttn` or
             `UNetMidBlock2DSimpleCrossAttn`. If `None`, the mid block layer is skipped.  
 9. Unet中的上采样模块类型。up_block_types (`Tuple[str]`, *optional*, defaults to `("UpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D")`): The tuple of upsample blocks to use.  
-````          
-        only_cross_attention(`bool` or `Tuple[bool]`, *optional*, default to `False`):
-            Whether to include self-attention in the basic transformer blocks, see
-            [`~models.attention.BasicTransformerBlock`].
-        block_out_channels (`Tuple[int]`, *optional*, defaults to `(320, 640, 1280, 1280)`):
-            The tuple of output channels for each block.
-        layers_per_block (`int`, *optional*, defaults to 2): The number of layers per block.
+````
+10. 是否包含自注意力（self-attention）机制。only_cross_attention,这个参数用于指定在基本的变换器（Transformer）块中是否包含自注意力（self-attention）机制.
+11. 每个模块输出的通道数。block_out_channels (`Tuple[int]`, *optional*, defaults to `(320, 640, 1280, 1280)`): The tuple of output channels for each block.
+12. 每个block的层数。layers_per_block (`int`, *optional*, defaults to 2): The number of layers per block.
         downsample_padding (`int`, *optional*, defaults to 1): The padding to use for the downsampling convolution.
         mid_block_scale_factor (`float`, *optional*, defaults to 1.0): The scale factor to use for the mid block.
         dropout (`float`, *optional*, defaults to 0.0): The dropout probability to use.
