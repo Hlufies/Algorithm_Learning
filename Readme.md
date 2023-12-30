@@ -11,7 +11,7 @@
 7. [大模型的隐患](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%9A%90%E6%82%A3.md)
 8. [CoT](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/CoT.md)
 10. [生成模型的解码方式](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%A7%A3%E7%A0%81%E6%96%B9%E5%BC%8F.md)
-11. [P-tuning](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/P-tuning.md)
+11. [Prompts-tuning](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/P-tuning.md)
 12. [Lora](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Lora.md)
 13. LLaVA
 14. PiexlLm
