@@ -16,11 +16,10 @@
         1. 样本是输入大小：height和width。sample_size (`int` or `Tuple[int, int]`, *optional*, defaults to `None`): Height and width of input/output sample.
         2. 样本的输入通道：in_channels (`int`, *optional*, defaults to 4): Number of channels in the input sample.
         3. 样本的输出通道：out_channels (`int`, *optional*, defaults to 4): Number of channels in the output.
-        4. 是否进行中心化处理：center_input_sample (`bool`, *optional*, defaults to `False`): Whether to center the input sample.
-        flip_sin_to_cos (`bool`, *optional*, defaults to `False`):
-            Whether to flip the sin to cos in the time embedding.
-        freq_shift (`int`, *optional*, defaults to 0): The frequency shift to apply to the time embedding.
-        down_block_types (`Tuple[str]`, *optional*, defaults to `("CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D")`):
+        4. 是否进行中心化处理：就让让数据范围在[-1,1]之间。center_input_sample (`bool`, *optional*, defaults to `False`): Whether to center the input sample.
+        5. 是否进行将time_embeding进行正弦和余弦翻转。因为time_embedding是由从一个正弦余弦组合的映射而来的，默认的组合是sin-cos。flip_sin_to_cos (`bool`, *optional*, defaults to `False`): Whether to flip the sin to cos in the time embedding.
+        6. 是否对time_embedding进行频移。freq_shift (`int`, *optional*, defaults to 0): The frequency shift to apply to the time embedding.
+        7. down_block_types (`Tuple[str]`, *optional*, defaults to `("CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D")`):
             The tuple of downsample blocks to use.
         mid_block_type (`str`, *optional*, defaults to `"UNetMidBlock2DCrossAttn"`):
             Block type for middle of UNet, it can be either `UNetMidBlock2DCrossAttn` or
