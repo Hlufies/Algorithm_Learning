@@ -31,7 +31,7 @@
 
 ## CV
 1. [Diffusion]()
-2. [StableDiffusion_DDPM](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/DDPM%207c7422248a07499f86c9cf75888762c8.md)
+2. [StableDiffusion_DDPM](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDiffusion_DDPM.md)
 3. [StableDiffusion_Unet]()
 4. [对比学习](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0.md)
 5. [FreeInit: Bridging Initialization Gap in Video Diffusion Models]()
