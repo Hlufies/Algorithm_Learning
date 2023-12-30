@@ -1,5 +1,5 @@
 # UNet2DConditionModel
-## 初始化参数
+## 初始化
 ```
     A conditional 2D UNet model that takes a noisy sample, conditional state, and a timestep and returns a sample shaped output.This model inherits from [`ModelMixin`]. Check the superclass documentation for it's generic methods implemented for all models (such as downloading or saving).
     1. 这里提到的是一个 UNet 模型，它是一种常用于图像处理任务的卷积神经网络架构，特别是在图像分割领域。
@@ -12,9 +12,9 @@
         一个条件状态（这可能是一个额外的信息，用于指导或改变模型的行为），
         一个时间步（通常用于序列数据或动态过程，可能在这里用于指定处理的特定阶段）
 ```
-```
-    Parameters:
-``` 
+
+### Parameters:
+ 
 1. 样本是输入大小：height和width。sample_size (`int` or `Tuple[int, int]`, *optional*, defaults to `None`): Height and width of input/output sample.  
 2. 样本的输入通道：in_channels (`int`, *optional*, defaults to 4): Number of channels in the input sample.  
 3. 样本的输出通道：out_channels (`int`, *optional*, defaults to 4): Number of channels in the output.  
