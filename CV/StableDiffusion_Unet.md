@@ -1,10 +1,7 @@
 # UNet2DConditionModel
 ## 初始化参数
 ```
-    A conditional 2D UNet model that takes a noisy sample, conditional state, and a timestep and returns a sample
-    shaped output.
-    This model inherits from [`ModelMixin`]. Check the superclass documentation for it's generic methods implemented
-    for all models (such as downloading or saving).
+    A conditional 2D UNet model that takes a noisy sample, conditional state, and a timestep and returns a sample shaped output.This model inherits from [`ModelMixin`]. Check the superclass documentation for it's generic methods implemented for all models (such as downloading or saving).
     1. 这里提到的是一个 UNet 模型，它是一种常用于图像处理任务的卷积神经网络架构，特别是在图像分割领域。
     2. "2D" 指的是这个模型处理的是二维数据，如普通的图像。
     3. "条件式"（conditional）可能意味着这个模型的输出不仅依赖于输入图像，还依赖于某些额外的条件或参数。
