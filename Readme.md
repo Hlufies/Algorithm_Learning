@@ -14,8 +14,9 @@
 11. [Prompts-tuning](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Prompts-tuning.md)
 12. [P-tuning](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/P-tuning.md)
 13. [Lora](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Lora.md)
-14. LLaVA
-15. PiexlLm
+14. [PEFT_Code]()
+16. LLaVA
+17. PiexlLm
     
    ------------------------------------------------------------------------------------------------------
 
