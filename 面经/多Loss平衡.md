@@ -16,6 +16,6 @@
 
 
 --------------------------------------------------------------
-https://zhuanlan.zhihu.com/p/456089764
-
+https://zhuanlan.zhihu.com/p/456089764   
+https://github.com/QunBB/DeepLearning/tree/main/multitasklearning/loss
    
