@@ -10,7 +10,7 @@
    ```
    GradNorm设计了额外的loss来学习不同task loss的权重，但它不参与网络层的参数的反向梯度更新，目的在于不同task的梯度通过正则化能够变成同样的量级，使不同task可以以接近的速度进行训练    
 3. End-to-End Multi-Task Learning with Attention  
-<img width="516" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/0085a69f-00f6-4d35-ac07-beaeaf3f1e3d">
+<img width="516" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/0085a69f-00f6-4d35-ac07-beaeaf3f1e3d">  
 4. A Pareto-Efficient Algorithm for Multiple Objective Optimization in E-Commerce Recommendation
 
    
