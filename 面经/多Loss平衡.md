@@ -20,6 +20,7 @@
 
 --------------------------------------------------------------
 https://zhuanlan.zhihu.com/p/456089764     
-https://zhuanlan.zhihu.com/p/650920833
+https://zhuanlan.zhihu.com/p/650920833  
+https://www.zhihu.com/question/375794498
 https://github.com/QunBB/DeepLearning/tree/main/multitasklearning/loss
    
