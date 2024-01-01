@@ -8,9 +8,7 @@
    ```
    梯度正则化gradient normalization (GradNorm)，它能自动平衡多task不同的梯度量级，提升多任务学习的效果，减少过拟合。
    ```
-   GradNorm设计了额外的loss来学习不同task loss的权重，但它不参与网络层的参数的反向梯度更新，目的在于不同task的梯度通过正则化能够变成同样的量级，使不同task可以以接近的速度进行训练
-<img width="527" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/586c0e66-87e9-480c-b2d4-c34a1b1477a6">  
-
+   GradNorm设计了额外的loss来学习不同task loss的权重，但它不参与网络层的参数的反向梯度更新，目的在于不同task的梯度通过正则化能够变成同样的量级，使不同task可以以接近的速度进行训练  
 3. End-to-End Multi-Task Learning with Attention  
 <img width="516" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/0085a69f-00f6-4d35-ac07-beaeaf3f1e3d">
 
@@ -19,6 +17,7 @@
 
 
 --------------------------------------------------------------
+https://zhuanlan.zhihu.com/p/269492239  
 https://zhuanlan.zhihu.com/p/456089764     
 https://zhuanlan.zhihu.com/p/650920833  
 https://www.zhihu.com/question/375794498
