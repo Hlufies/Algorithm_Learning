@@ -31,7 +31,7 @@
 
 ## CV
 1. [Diffusion]()
-2. [StableDiffusionPipeline]()
+2. [StableDiffusionPipeline](https://github.com/Hlufies/Algorithm_Learning/edit/main/CV/StableDiffusionPipeline.md)
 3. [StableDiffusion_DDPM](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDiffusion_DDPM.md)
 4. [StableDiffusion_Unet]()
 5. [StableDiffusion_processImage](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDifffusion_processImage.md)
