@@ -34,8 +34,9 @@
 2. [StableDiffusionPipeline]()
 3. [StableDiffusion_DDPM](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDiffusion_DDPM.md)
 4. [StableDiffusion_Unet]()
-5. [对比学习](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0.md)
-6. [FreeInit: Bridging Initialization Gap in Video Diffusion Models]()
+5. [StableDiffusion_processImage]()
+6. [对比学习](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0.md)
+7. [FreeInit: Bridging Initialization Gap in Video Diffusion Models]()
    
 ## Watermarking
 1. [Model-Watermark](https://github.com/Hlufies/Model-Watermark.git)
