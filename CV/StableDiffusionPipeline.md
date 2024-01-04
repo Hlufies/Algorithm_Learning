@@ -235,12 +235,12 @@ def prepare_latents(self, batch_size, num_channels_latents, height, width, dtype
     latents = latents * self.scheduler.init_noise_sigma
     return latents
 ```
-#### 准备额外的参数
+#### 第6步：准备额外的参数
 ```
 extra_step_kwargs = self.prepare_extra_step_kwargs(generator, eta)
 ```
 
-#### Denoising loop
+#### 第7步：Denoising loop
 ```
 num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
 这行代码的作用是计算预热步骤的数量。
