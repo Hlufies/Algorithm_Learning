@@ -385,24 +385,11 @@ def step(
     if self.config.prediction_type == "epsilon":
         # 原本的加噪公式，请看train阶段的加噪步骤
         pred_original_sample = (sample - beta_prod_t ** (0.5) * model_output) / alpha_prod_t ** (0.5)
-    elif self.config.prediction_type == "sample":
-        pred_original_sample = model_output
-    elif self.config.prediction_type == "v_prediction":
-        pred_original_sample = (alpha_prod_t**0.5) * sample - (beta_prod_t**0.5) * model_output
-    else:
-        raise ValueError(
-            f"prediction_type given as {self.config.prediction_type} must be one of `epsilon`, `sample` or"
-            " `v_prediction`  for the DDPMScheduler."
-        )
+    .............
 
     # 3. Clip or threshold "predicted x_0"
     # 对预测的原始样本进行阈值处理或裁剪，以确保其在合理的范围内
-    if self.config.thresholding:
-        pred_original_sample = self._threshold_sample(pred_original_sample)
-    elif self.config.clip_sample:
-        pred_original_sample = pred_original_sample.clamp(
-            -self.config.clip_sample_range, self.config.clip_sample_range
-        )
+    ............
 
     # 4. Compute coefficients for pred_original_sample x_0 and current sample x_t
     # 混合原始样本和当前样本的系数
@@ -417,27 +404,36 @@ def step(
     pred_prev_sample = pred_original_sample_coeff * pred_original_sample + current_sample_coeff * sample
 
     # 6. Add noise
-    variance = 0
-    if t > 0:
-        device = model_output.device
-        variance_noise = randn_tensor(
-            model_output.shape, generator=generator, device=device, dtype=model_output.dtype
-        )
-        if self.variance_type == "fixed_small_log":
-            variance = self._get_variance(t, predicted_variance=predicted_variance) * variance_noise
-        elif self.variance_type == "learned_range":
-            variance = self._get_variance(t, predicted_variance=predicted_variance)
-            variance = torch.exp(0.5 * variance) * variance_noise
-        else:
-            variance = (self._get_variance(t, predicted_variance=predicted_variance) ** 0.5) * variance_noise
-   
+    variance = 0 
+    ...... 
     在计算的样本上添加噪声，这个噪声取决于时间步和模型的配置
     pred_prev_sample = pred_prev_sample + variance
 
     if not return_dict:
         return (pred_prev_sample,)
-
     return DDPMSchedulerOutput(prev_sample=pred_prev_sample, pred_original_sample=pred_original_sample)
+```
+#### 第8步：输出
+```
+if not output_type == "latent":
+    image = self.vae.decode(latents / self.vae.config.scaling_factor, return_dict=False)[0]
+    image, has_nsfw_concept = self.run_safety_checker(image, device, prompt_embeds.dtype)
+else:
+    image = latents
+    has_nsfw_concept = None
+
+if has_nsfw_concept is None:
+    do_denormalize = [True] * image.shape[0]
+else:
+    do_denormalize = [not has_nsfw for has_nsfw in has_nsfw_concept]
+
+image = self.image_processor.postprocess(image, output_type=output_type, do_denormalize=do_denormalize)
+
+# Offload all models
+self.maybe_free_model_hooks()
+
+if not return_dict:
+    return (image, has_nsfw_concept)
 ```
 
 
