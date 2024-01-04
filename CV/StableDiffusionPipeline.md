@@ -179,6 +179,16 @@ uncond_input = [""]*batch or negative_prompt
 self.scheduler.set_timesteps(num_inference_steps, device=device)
 timesteps = self.scheduler.timesteps
 # "linspace", "leading", "trailing" corresponds to annotation of Table 2. of https://arxiv.org/abs/2305.08891
+
+举例: num_inference_steps = 50, "linspace"
+   -> timesteps = [99, 97, 95, 93, 91, 89,
+                  87, 85, 83, 81, 79, 77,
+                  75, 73, 71, 69, 67, 65,
+                  63, 61, 59, 57, 55, 53,
+                  51, 48, 46, 44, 42, 40,
+                  38, 36, 34, 32, 30, 28,
+                  26, 24, 22, 20, 18, 16,
+                  14, 12, 10, 8, 6, 4, 2, 0]
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 DDPM主要由三种策略处理timesteps
 1. linspace
@@ -193,6 +203,229 @@ DDPM主要由三种策略处理timesteps
 这里使用 np.arange 从 num_train_timesteps 到 0 生成时间步长，并按比率进行调整。生成的时间步长减去1以匹配索引。
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 ```
+#### 第5步：准备latents
+```
+论文里面latents的shape为：[N, 4, 64, 64]
+num_channels_latents = self.unet.config.in_channels
+latents = self.prepare_latents(
+    batch_size * num_images_per_prompt,
+    num_channels_latents,
+    height,
+    width,
+    prompt_embeds.dtype,
+    device,
+    generator,
+    latents,
+)
 
+def prepare_latents(self, batch_size, num_channels_latents, height, width, dtype, device, generator, latents=None):
+    shape = (batch_size, num_channels_latents, height // self.vae_scale_factor, width // self.vae_scale_factor)
+    if isinstance(generator, list) and len(generator) != batch_size:
+        raise ValueError(
+            f"You have passed a list of generators of length {len(generator)}, but requested an effective batch"
+            f" size of {batch_size}. Make sure the batch size matches the length of the generators."
+        )
+
+    if latents is None:
+        latents = randn_tensor(shape, generator=generator, device=device, dtype=dtype)
+    else:
+        latents = latents.to(device)
+
+    # scale the initial noise by the standard deviation required by the scheduler
+    latents = latents * self.scheduler.init_noise_sigma
+    return latents
+```
+#### 准备额外的参数
+```
+extra_step_kwargs = self.prepare_extra_step_kwargs(generator, eta)
+```
+
+#### Denoising loop
+```
+num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
+这行代码的作用是计算预热步骤的数量。
+这是通过从总的时间步长数量中减去根据推理步骤数量和调度器阶数计算出的值来实现的。
+预热步骤在很多算法中都很重要，用于使模型在开始执行主要任务之前达到稳定的状态
+```
+```
+with self.progress_bar(total=num_inference_steps) as progress_bar:
+    for i, t in enumerate(timesteps):
+        # expand the latents if we are doing classifier free guidance
+        --------------------------------------------------------------------------------------------
+        # 前面已经说明过， 如果do_classiifier_free_guidance > 1.0, 提示词embedding由两部分拼接起来的
+        # prompt_embeds = torch.cat([negative_prompt_embeds, prompt_embeds])
+        # 因此这里的的latents也应是两个相同形状的拼接起来的
+        latent_model_input = torch.cat([latents] * 2) if do_classifier_free_guidance else latents
+        --------------------------------------------------------------------------------------------
+
+        # 这里将时间步的信息融合到latents里， 这里融合细节另一篇展开剖析
+        latent_model_input = self.scheduler.scale_model_input(latent_model_input, t)
+        --------------------------------------------------------------------------------------------
+
+        # 通过unet预测noise
+        noise_pred = self.unet(
+            latent_model_input,
+            t,
+            encoder_hidden_states=prompt_embeds,
+            cross_attention_kwargs=cross_attention_kwargs,
+            return_dict=False,
+        )[0]
+        --------------------------------------------------------------------------------------------
+
+        # perform guidance
+        # 提示词的相关性， 默认值是7.5(CFG)
+        if do_classifier_free_guidance:
+            # 如果执行提示词引导， 那么noise_pred由两部分组成[uncondition(nevagative), condition]
+            noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
+            # 然后最后的noise_pred， 就是无条件预测噪声 + 相关性因子*（noise_pred_text - noise_pred_uncond）
+            # noise_pred_text - noise_pred_uncond: 这个差值表示有条件输入和无条件输入生成的噪声之间的差异。这个差异捕捉了条件信息（例如，文本描述）如何改变生成的输出。
+            # 通过将无条件噪声与放大的条件差异相加，生成最终的噪声预测。这样，生成的结果既考虑了无条件的基线，又融入了有条件信息的影响。
+            noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
+        --------------------------------------------------------------------------------------------
+
+        if do_classifier_free_guidance and guidance_rescale > 0.0:
+            # Based on 3.4. in https://arxiv.org/pdf/2305.08891.pdf
+            # 这里执行的重放缩， 暂时没有读论文
+            noise_pred = rescale_noise_cfg(noise_pred, noise_pred_text, guidance_rescale=guidance_rescale)
+
+            #---------------------------------------------------------------------------------------
+
+            rescale_noise_cfg 函数的目的是调整扩散模型的噪声配置，以便更好地结合无条件和有条件的信息。
+            这样的调整基于对扩散过程的研究，旨在优化生成图像的质量，防止过度曝光，同时保持图像的自然度和丰富性。
+            这种方法在基于扩散的生成模型中尤其重要，因为它们依赖于[精确控制噪声过程]来生成高质量的结果
+
+            def rescale_noise_cfg(noise_cfg, noise_pred_text, guidance_rescale=0.0):
+                # noise_cfg: 噪声配置，可能是模型生成的原始噪声。
+                # noise_pred_text: 基于文本（或其他条件信息）的噪声预测。
+                # guidance_rescale: 一个缩放因子，用于调整条件信息对最终结果的影响。
+                """
+                Rescale `noise_cfg` according to `guidance_rescale`. Based on findings of [Common Diffusion Noise Schedules and
+                Sample Steps are Flawed](https://arxiv.org/pdf/2305.08891.pdf). See Section 3.4
+                """
+
+                # 计算 noise_pred_text 在除了第一个维度（通常是批次维度）之外的所有维度上的标准差。
+                std_text = noise_pred_text.std(dim=list(range(1, noise_pred_text.ndim)), keepdim=True)
+                # 计算 noise_cfg 在除了第一个维度（通常是批次维度）之外的所有维度上的标准差。
+                std_cfg = noise_cfg.std(dim=list(range(1, noise_cfg.ndim)), keepdim=True)
+                # 使用计算出的标准差之比来重新缩放 noise_cfg。这一步是基于特定的扩散模型调整策略，可以帮助纠正过度曝光等问题。
+                noise_pred_rescaled = noise_cfg * (std_text / std_cfg)
+                # mix with the original results from guidance by factor guidance_rescale to avoid "plain looking" images
+                # 将重缩放后的噪声与原始噪声混合。通过 guidance_rescale 控制两者的混合比例，以避免生成的图像看起来过于平淡或无特色。
+                noise_cfg = guidance_rescale * noise_pred_rescaled + (1 - guidance_rescale) * noise_cfg
+                return noise_cfg
+
+            #---------------------------------------------------------------------------------------
+
+        --------------------------------------------------------------------------------------------
+        # compute the previous noisy sample x_t -> x_t-1
+        # self.scheduler.step 函数被用于在扩散过程中计算前一个噪声样本（从 x_t 到 x_t-1）。
+        latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0]
+
+        # call the callback, if provided
+        # 召回
+        if i == len(timesteps) - 1 or ((i + 1) > num_warmup_steps and (i + 1) % self.scheduler.order == 0):
+            progress_bar.update()
+            if callback is not None and i % callback_steps == 0:
+                callback(i, t, latents)
+```
+```
+def step(
+    self,
+    # noise_pred
+    model_output: torch.FloatTensor,
+    # 时间步
+    timestep: int,
+    # latents
+    sample: torch.FloatTensor,
+    # 额外的调整参数
+    generator=None,
+    # 是否返回字典
+    return_dict: bool = True,
+) -> Union[DDPMSchedulerOutput, Tuple]:
+    """
+    Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
+    process from the learned model outputs (most often the predicted noise).
+    反向SDE预测：该函数通过反向模拟随机微分方程（SDE）来预测前一个时间步的样本。
+    在扩散模型中，这通常意味着从添加噪声的样本中逐步去除噪声，从而逐渐恢复出原始的、清晰的数据。
+    从模型输出传播：这个过程基于从模型（如深度神经网络）学习到的输出，这些输出通常是对加入样本的噪声的预测。
+
+    Returns:
+        [`~schedulers.scheduling_ddpm.DDPMSchedulerOutput`] or `tuple`:
+            If return_dict is `True`, [`~schedulers.scheduling_ddpm.DDPMSchedulerOutput`] is returned, otherwise a
+            tuple is returned where the first element is the sample tensor.
+
+    """
+    t = timestep
+
+    # 找到上一步的timestep
+    prev_t = self.previous_timestep(t)
+
+    if model_output.shape[1] == sample.shape[1] * 2 and self.variance_type in ["learned", "learned_range"]:
+        model_output, predicted_variance = torch.split(model_output, sample.shape[1], dim=1)
+    else:
+        predicted_variance = None
+
+    # 1. compute alphas, betas
+    # Diffsuion公式
+    alpha_prod_t = self.alphas_cumprod[t]
+    alpha_prod_t_prev = self.alphas_cumprod[prev_t] if prev_t >= 0 else self.one
+    beta_prod_t = 1 - alpha_prod_t
+    beta_prod_t_prev = 1 - alpha_prod_t_prev
+    current_alpha_t = alpha_prod_t / alpha_prod_t_prev
+    current_beta_t = 1 - current_alpha_t
+
+    # 2. compute predicted original sample from predicted noise also called
+    # "predicted x_0" of formula (15) from https://arxiv.org/pdf/2006.11239.pdf
+    if self.config.prediction_type == "epsilon":
+        pred_original_sample = (sample - beta_prod_t ** (0.5) * model_output) / alpha_prod_t ** (0.5)
+    elif self.config.prediction_type == "sample":
+        pred_original_sample = model_output
+    elif self.config.prediction_type == "v_prediction":
+        pred_original_sample = (alpha_prod_t**0.5) * sample - (beta_prod_t**0.5) * model_output
+    else:
+        raise ValueError(
+            f"prediction_type given as {self.config.prediction_type} must be one of `epsilon`, `sample` or"
+            " `v_prediction`  for the DDPMScheduler."
+        )
+
+    # 3. Clip or threshold "predicted x_0"
+    if self.config.thresholding:
+        pred_original_sample = self._threshold_sample(pred_original_sample)
+    elif self.config.clip_sample:
+        pred_original_sample = pred_original_sample.clamp(
+            -self.config.clip_sample_range, self.config.clip_sample_range
+        )
+
+    # 4. Compute coefficients for pred_original_sample x_0 and current sample x_t
+    # See formula (7) from https://arxiv.org/pdf/2006.11239.pdf
+    pred_original_sample_coeff = (alpha_prod_t_prev ** (0.5) * current_beta_t) / beta_prod_t
+    current_sample_coeff = current_alpha_t ** (0.5) * beta_prod_t_prev / beta_prod_t
+
+    # 5. Compute predicted previous sample µ_t
+    # See formula (7) from https://arxiv.org/pdf/2006.11239.pdf
+    pred_prev_sample = pred_original_sample_coeff * pred_original_sample + current_sample_coeff * sample
+
+    # 6. Add noise
+    variance = 0
+    if t > 0:
+        device = model_output.device
+        variance_noise = randn_tensor(
+            model_output.shape, generator=generator, device=device, dtype=model_output.dtype
+        )
+        if self.variance_type == "fixed_small_log":
+            variance = self._get_variance(t, predicted_variance=predicted_variance) * variance_noise
+        elif self.variance_type == "learned_range":
+            variance = self._get_variance(t, predicted_variance=predicted_variance)
+            variance = torch.exp(0.5 * variance) * variance_noise
+        else:
+            variance = (self._get_variance(t, predicted_variance=predicted_variance) ** 0.5) * variance_noise
+
+    pred_prev_sample = pred_prev_sample + variance
+
+    if not return_dict:
+        return (pred_prev_sample,)
+
+    return DDPMSchedulerOutput(prev_sample=pred_prev_sample, pred_original_sample=pred_original_sample)
+```
 
 
