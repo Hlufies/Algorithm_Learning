@@ -52,8 +52,6 @@
 3. [Fundemental of statistical signal processing]()
 4. [现代信号处理]()
 
-<img width="457" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/b4783c56-5b7d-4682-910c-897693ac292c">
-
 ## 面经集合
 1. [NLP](https://github.com/Hlufies/Algorithm_Learning/tree/main) | [CV ]() | [大模型]() | [多模态]() | [Prompt](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md) | [GPT]() | [SD](https://github.com/Hlufies/Algorithm_Learning/blob/main/SD.md) | 问题
 2. 项目问题
