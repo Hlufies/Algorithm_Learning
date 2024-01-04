@@ -31,8 +31,16 @@ GLM自回归生成B部分，每个span输入以[S] 作为开头 [E]作为输出�
 position 1 表示跨度间的位置
 position 2 表示跨度内的位置
 自回归生成过程中，A可以实现自我的全注意力，但是不能关注B，B可以关注A以及在B中前面的spans。
-为什么？
 ```
+```
+为什么？
+我的理解是，设计一种包含双向和单向注意力的架构
+```
+整体架构是基于 Transformer，主要进行 3 处修改，分别为：  
+1. 调整了 norm 以及 残差连接 的顺序：这个主要是 Post-Norm vs. Pre-Norm 的问题，在大模型的各类应用当中，Post-Norm 的作法比较常见（例如 Bert），具体分析可以见下，Pre-Norm 从某种程度上加深了网络的宽度而降低了深度，导致效果变差。
+2. 使用了单个的 linear layer 预测 token 输出。
+3. 使用了 GeLU 替换了 ReLU：GeLU 在负数部分也有激活值，一定程度上解决神经元死亡问题，正数部分和Relu一样
+   
 <img width="574" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/fb8a8cdd-c712-4aa5-8bbc-40ecbba2a62a">
 
 ### 3.1.2 Multi-Task Pretraining
