@@ -50,6 +50,9 @@
 1. [2023.12.11 压缩即智能](https://github.com/Hlufies/Algorithm_Learning/blob/main/Blogs/%E5%8E%8B%E7%BC%A9%E5%8D%B3%E6%99%BA%E8%83%BD%202023.12.11.md)
 2. [2023.12.25 Loss计算]()
 3. [Fundemental of statistical signal processing]()
+
+<img width="457" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/b4783c56-5b7d-4682-910c-897693ac292c">
+
 ## 面经集合
 1. [NLP](https://github.com/Hlufies/Algorithm_Learning/tree/main) | [CV ]() | [大模型]() | [多模态]() | [Prompt](https://github.com/Hlufies/Algorithm_Learning/blob/main/Prompt%20Engineering.md) | [GPT]() | [SD](https://github.com/Hlufies/Algorithm_Learning/blob/main/SD.md) | 问题
 2. 项目问题
