@@ -41,7 +41,48 @@ position 2 表示跨度内的位置
 1. 文档级别：从文档中随机采样一个文本片段进行掩码，片段的长度为文档长度的50%-100%。
 2. 句子级别：从文档中随机掩码若干文本片段，每个文本片段必须为完整的句子，被掩码的词数量为整个文档长度的15%。
 
-# Others
+# 四. Others
 1. encoder和decoder共享参数
 2. 随机打散被mask的片段，为了：完整的捕捉到不同片段之间的依赖关系
+# 五. Code
+## Generation
+```
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+tokenizer = AutoTokenizer.from_pretrained("THUDM/glm-10b", trust_remote_code=True)
+model = AutoModelForSeq2SeqLM.from_pretrained("THUDM/glm-10b", trust_remote_code=True)
+model = model.half().cuda()
+model.eval()
 
+# Inference
+inputs = tokenizer("Ng is an adjunct professor at [MASK] (formerly associate professor and Director of its Stanford AI Lab or SAIL ). Also a pioneer in online education, Ng co-founded Coursera and deeplearning.ai.", return_tensors="pt")
+inputs = tokenizer.build_inputs_for_generation(inputs, max_gen_length=512)
+inputs = inputs.to('cuda')
+outputs = model.generate(**inputs, max_length=512, eos_token_id=tokenizer.eop_token_id)
+print(tokenizer.decode(outputs[0].tolist()))
+
+# Training
+inputs = tokenizer(
+    ["Tsinghua University is located in [MASK].", "One minus one equals zero, is it correct? Answer: [MASK]"],
+    return_tensors="pt", padding=True)
+inputs = tokenizer.build_inputs_for_generation(inputs, targets=["Beijing", "No"], max_gen_length=8, padding=False)
+inputs = inputs.to('cuda')
+outputs = model(**inputs)
+loss = outputs.loss
+logits = outputs.logits
+```
+## Classification
+```
+from transformers import AutoTokenizer, AutoModelForMultipleChoice
+tokenizer = AutoTokenizer.from_pretrained("THUDM/glm-10b", trust_remote_code=True)
+model = AutoModelForMultipleChoice.from_pretrained("THUDM/glm-10b", trust_remote_code=True)
+model = model.half().cuda()
+model.eval()
+
+inputs = tokenizer(["Tsinghua University is located in [MASK].",
+                    "One minus one equals zero, is it correct? Answer: [MASK]"], return_tensors="pt", padding=True)
+choices = [["Beijing", "Shanghai"], ["Yes", "No"]]
+inputs = tokenizer.build_inputs_for_multiple_choice(inputs, choices)
+inputs = inputs.to('cuda')
+outputs = model(**inputs)
+logits = outputs.logits
+```
