@@ -329,8 +329,10 @@ with self.progress_bar(total=num_inference_steps) as progress_bar:
                 callback(i, t, latents)
 ```
   
-<img width="413" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/089d0e36-8b1c-4d5f-a152-86bde87593db">
-  
+<div style="text-align:center">
+    <img width="413" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/089d0e36-8b1c-4d5f-a152-86bde87593db">
+</div>
+
 ```
 def step(
     self,
