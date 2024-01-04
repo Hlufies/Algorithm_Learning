@@ -1,6 +1,6 @@
 # Algorithm Learning 算法修炼之路
 # [An extremely messed up life](https://github.com/Hlufies/Algorithm_Learning/blob/main/An%20extremely%20messed%20up%20life.md)
-## NLP
+## NLP [LLM]
 1. [Transformer](https://github.com/Hlufies/Algorithm_Learning/blob/main/Code/Transformer)
 1. [Bert](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Bert.md)
 2. [Muiti Label and Multi Class](https://github.com/Hlufies/Algorithm_Learning/blob/main/NLP/Multi%20label%20and%20Multi%20class.md)
@@ -30,8 +30,8 @@
    
    ------------------------------------------------------------------------------------------------------
 
-## CV
-1. [Diffusion]()
+## CV [Diffusion]
+1. [Diffusion](https://arxiv.org/abs/2006.11239)
 2. [StableDiffusionPipeline](https://github.com/Hlufies/Algorithm_Learning/edit/main/CV/StableDiffusionPipeline.md)
 3. [StableDiffusion_DDPM](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDiffusion_DDPM.md)
 4. [StableDiffusion_Unet]()
