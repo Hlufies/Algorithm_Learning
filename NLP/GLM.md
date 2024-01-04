@@ -9,6 +9,7 @@
   BERT的训练目标是对文本进行随机掩码，然后预测被掩码的词。
   T5则是接受一段文本，从左到右的生成另一段文本。
    ```
+
 # 二. Improvement 
 1. span shuffling
 2. 2D positional encoding.
