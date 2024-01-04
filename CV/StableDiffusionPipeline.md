@@ -371,7 +371,7 @@ def step(
         predicted_variance = None
 
     # 1. compute alphas, betas
-    # Diffsuion公式
+    # 用于控制每个时间步的噪声水平的
     alpha_prod_t = self.alphas_cumprod[t]
     alpha_prod_t_prev = self.alphas_cumprod[prev_t] if prev_t >= 0 else self.one
     beta_prod_t = 1 - alpha_prod_t
@@ -381,7 +381,9 @@ def step(
 
     # 2. compute predicted original sample from predicted noise also called
     # "predicted x_0" of formula (15) from https://arxiv.org/pdf/2006.11239.pdf
+    # 根据预测的噪声计算原始样本的预测
     if self.config.prediction_type == "epsilon":
+        # 原本的加噪公式，请看train阶段的加噪步骤
         pred_original_sample = (sample - beta_prod_t ** (0.5) * model_output) / alpha_prod_t ** (0.5)
     elif self.config.prediction_type == "sample":
         pred_original_sample = model_output
@@ -394,6 +396,7 @@ def step(
         )
 
     # 3. Clip or threshold "predicted x_0"
+    # 对预测的原始样本进行阈值处理或裁剪，以确保其在合理的范围内
     if self.config.thresholding:
         pred_original_sample = self._threshold_sample(pred_original_sample)
     elif self.config.clip_sample:
@@ -402,12 +405,15 @@ def step(
         )
 
     # 4. Compute coefficients for pred_original_sample x_0 and current sample x_t
+    # 混合原始样本和当前样本的系数
     # See formula (7) from https://arxiv.org/pdf/2006.11239.pdf
     pred_original_sample_coeff = (alpha_prod_t_prev ** (0.5) * current_beta_t) / beta_prod_t
     current_sample_coeff = current_alpha_t ** (0.5) * beta_prod_t_prev / beta_prod_t
 
     # 5. Compute predicted previous sample µ_t
     # See formula (7) from https://arxiv.org/pdf/2006.11239.pdf
+    # 使用计算出的系数和预测的原始样本来估计前一个时间步的样本
+    # 预测原始样本系数 * 预测原始样本  +  当前样本系数 * 样本
     pred_prev_sample = pred_original_sample_coeff * pred_original_sample + current_sample_coeff * sample
 
     # 6. Add noise
@@ -424,7 +430,8 @@ def step(
             variance = torch.exp(0.5 * variance) * variance_noise
         else:
             variance = (self._get_variance(t, predicted_variance=predicted_variance) ** 0.5) * variance_noise
-
+   
+    在计算的样本上添加噪声，这个噪声取决于时间步和模型的配置
     pred_prev_sample = pred_prev_sample + variance
 
     if not return_dict:
