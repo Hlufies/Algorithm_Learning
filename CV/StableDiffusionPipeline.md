@@ -328,6 +328,9 @@ with self.progress_bar(total=num_inference_steps) as progress_bar:
             if callback is not None and i % callback_steps == 0:
                 callback(i, t, latents)
 ```
+  
+<img width="413" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/089d0e36-8b1c-4d5f-a152-86bde87593db">
+  
 ```
 def step(
     self,
