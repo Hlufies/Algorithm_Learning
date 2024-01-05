@@ -21,6 +21,22 @@ bert的mask方法是token级的，但因为其对词的切分方法是BPE，即t
 ## Bert的NSP是怎么预测的?
 取pooling层后的[CLS] token并经过一个投影层(batch_size，dim)->(batch_size,2)，再做一个交叉损失计算loss，与mlm任务的loss加一起优化
 ## Bert的参数量计算
+
+![image](https://github.com/Hlufies/Algorithm_Learning/assets/130231524/da9e35c1-3549-4d64-a505-d7c0fde69ea7)  
+### Token Embeddings
+token embedding 层是要将各个词转换成固定维度的向量。在BERT中，每个词会被转换成768维的向量表示。  
+### Segment Embeddings
+BERT 能够处理对输入句子对的分类任务。这类任务就像判断两个文本是否是语义相似的。句子对中的两个句子被简单的拼接在一起后送入到模型中。那BERT如何去区分一个句子对中的两个句子呢？答案就是segment embeddings.  
+### Position Embeddings
+BERT包含这一串Transformers (Vaswani et al. 2017)，而且一般认为，Transformers无法编码输入的序列的顺序性。总的来说，加入position embeddings会让BERT理解下面下面这种情况：
+```
+I think, therefore I am
+第一个 “I” 和第二个 “I”应该有着不同的向量表示。
+
+BERT能够处理最长512个token的输入序列。论文作者通过让BERT在各个位置上学习一个向量表示来讲序列顺序的信息编码进来。
+
+Position Embeddings layer 实际上就是一个大小为 (512, 768) 的lookup表，表的第一行是代表第一个序列的第一个位置，第二行代表序列的第二个位置，以此类推。因此，如果有这样两个句子“Hello world” 和“Hi there”, “Hello” 和“Hi”会由完全相同的position embeddings，因为他们都是句子的第一个词。同理，“world” 和“there”也会有相同的position embedding。
+```
 Bert参数量计算，简要说一下，不用直接得出计算数字，给每层的公式就行
 ```
 a.token embedding参数矩阵: vocab_length词表长度*dim特征维度;
