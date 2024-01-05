@@ -39,9 +39,9 @@ e.pooling层: dim^2+dim
 f.MLM、NSP涉及的参数:分别是768 * vocab_size+ 768 *2
 ```
 ## Bert的layernorm是BN还是LN? 是pre-norm还是post-norm?
-LN，post-norm
-[这里细谈LayerNorm和BatchNorm的细节点]()
-[Pre-Norm和Post-Norm的细节点]()
+LN，post-norm  
+[这里细谈LayerNorm和BatchNorm的细节点]()  
+[Pre-Norm和Post-Norm的细节点]()  
 
 ## Bert的embedding部分和原transformer的有什么不同?
 a. Bert的embedding部分是由三部分组成的，token embedding+positionembedding+segment embedding ;
