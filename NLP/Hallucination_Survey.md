@@ -11,9 +11,9 @@
 2. 外部信息检索
 3. 语言模型生成的早期改进
 本文通过将这些不同的技术整合和组织成一个综合的分类法而具有重要意义。从本质上讲，本文对法学硕士幻觉领域的贡献有三个方面：
-1. Introduction of a systematic taxonomy designed to categorize hallucination mitigation techniques for LLMs, encompassing Vision Language Models (VLMs).
-2. Synthesis of the essential features characterizing these mitigation techniques, thereby guiding more structured future research endeavors within this domain.
-3. Deliberation on the limitations and challenges inherent in these techniques, accompanied by potential solutions and proposed directions for future research.
+3.1 Introduction of a systematic taxonomy designed to categorize hallucination mitigation techniques for LLMs, encompassing Vision Language Models (VLMs).
+3.2 Synthesis of the essential features characterizing these mitigation techniques, thereby guiding more structured future research endeavors within this domain.
+3.3 Deliberation on the limitations and challenges inherent in these techniques, accompanied by potential solutions and proposed directions for future research.
 <img width="620" alt="image" src="https://github.com/Hlufies/Algorithm_Learning/assets/130231524/f0ffc51e-905a-4096-919c-70efdea26b3b">
  法学硕士中幻觉缓解技术的分类，重点关注涉及**模型开发和提示技术**的流行方法。模型开发分为多种方法，包括新的解码策略、基于知识图的优化、添加新颖的损失函数组件和监督微调。同时，提示工程可以涉及基于检索增强的方法、基于反馈的策略或提示调整。
 
