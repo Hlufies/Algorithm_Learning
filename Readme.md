@@ -39,7 +39,7 @@
 6. [StableDiffusion_processImage](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDifffusion_processImage.md)
 7. [对比学习](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0.md)
 8. [FreeInit: Bridging Initialization Gap in Video Diffusion Models](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/FreeInit%3A%20Bridging%20Initialization%20Gap%20in%20Video%20Diffusion%20Models.md)
-9. [Speed Is All You Need: On-Device Acceleration of Large Diffusion Models via GPU-Aware Optimizations]()
+9. [Speed Is All You Need: On-Device Acceleration of Large Diffusion Models via GPU-Aware Optimizations](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/Speed%20Is%20All%20You%20Need.md)
    
 ## Watermarking
 1. [Model-Watermark](https://github.com/Hlufies/Model-Watermark.git)
