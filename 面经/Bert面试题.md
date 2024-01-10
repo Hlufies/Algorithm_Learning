@@ -68,9 +68,9 @@ LN，post-norm
 [Pre-Norm和Post-Norm的细节点]()  
 
 ## Bert的embedding部分和原transformer的有什么不同?
-a. Bert的embedding部分是由三部分组成的，token embedding+positionembedding+segment embedding ;
-b.原transformer缺少segment embedding，而且position embedding上使用的是固定式的三角函数计算出的，bert的是学习式的，即学习了一个position的参数矩阵。
+a. Bert的embedding部分是由三部分组成的，token embedding+positionembedding+segment embedding ;  
+b.原transformer缺少segment embedding，而且position embedding上使用的是固定式的三角函数计算出的，bert的是学习式的，即学习了一个position的参数矩阵。  
 ## Bert的三部分embedding为什么是相加而不是concat?
-1. concat导致模型参数的显著增加 (如自注意力层的权重矩阵Wa/K/v) : 加操作确保了嵌入向量的维度保持不变。如果将这些嵌入进行拼接，那么最终的嵌入维度将是各部分嵌入维度之和，以至于后面需要调整模型的后续部分参数矩阵维度导致参数增加
-2. concat导致模型需要学习不同纬度上的不同特征: 相加操作允许模型在每个位置上融合来自不同嵌入空间的信息，而这些信息是同时考虑的。这种方·以励艺型学习如何整合词语的含义、其在句子中的位置以及它属于哪个句子段的后忌。
-3. concat实验验证收益不大
+1. concat导致模型参数的显著增加 (如自注意力层的权重矩阵Wa/K/v) : 加操作确保了嵌入向量的维度保持不变。如果将这些嵌入进行拼接，那么最终的嵌入维度将是各部分嵌入维度之和，以至于后面需要调整模型的后续部分参数矩阵维度导致参数增加  
+2. concat导致模型需要学习不同纬度上的不同特征: 相加操作允许模型在每个位置上融合来自不同嵌入空间的信息，而这些信息是同时考虑的。这种方·以励艺型学习如何整合词语的含义、其在句子中的位置以及它属于哪个句子段的后忌。 
+3. concat实验验证收益不大  
