@@ -60,5 +60,83 @@
    用sft后的模型生成问题的回答，再拼接问题+回答输入RW得到分数 (取最后一个token投影一下)
    ```
 10. 生成模型的生成采样算法了解吗? 说一下
-11. 为什么对于GPT来说，in-context-learning是有效的?
-12. beam search可以手写一下吗?
+    ```
+    变分自编码器（Variational Autoencoders, VAEs）:
+
+   VAEs 通过编码器将输入数据映射到一个潜在空间，并通过解码器从这个空间生成数据。
+   它们的关键特点是潜在空间的连续性，这意味着相近的点在潜在空间中解码成相似的输出。
+   生成过程涉及从潜在空间中采样，然后通过解码器生成数据。
+   生成对抗网络（Generative Adversarial Networks, GANs）:
+   
+   GANs 由两部分组成：生成器和判别器。
+   生成器的目标是生成尽可能真实的数据，而判别器的目标是区分真实数据和生成器生成的假数据。
+   在训练过程中，这两个网络相互竞争，从而提高其性能。生成器通过从一个随机噪声分布中采样来生成数据。
+   自回归模型（如 PixelRNN, PixelCNN）:
+   
+   这类模型按顺序生成数据，每次生成一个数据点（例如图像的一个像素），并根据之前生成的所有点进行条件生成。
+   它们通常用于图像或文本生成，其中每个像素或单词的生成依赖于之前的像素或单词。
+   Transformers（特别是在文本生成中）:
+   
+   Transformers 在序列生成任务中表现出色，尤其是在文本领域。
+   它们通过注意力机制捕捉序列中的长距离依赖关系，可以一次生成一个元素（如一个单词或字符）。
+   流模型（Flow-based Models）:
+   
+   这类模型使用特殊的网络结构，可以精确地计算数据的概率密度。
+   它们可以直接从复杂分布中生成数据，通常用于高质量图像的生成。
+   扩散模型（Diffusion Models）:
+   
+   这是较新的一类生成模型，通过逐渐引入噪声到数据中，然后学习逆过程以从噪声数据中恢复原始数据。
+   扩散模型已在图像和音频生成中显示出令人印象深刻的结果。
+    ```
+12. 为什么对于GPT来说，in-context-learning是有效的?
+    ```
+    GPT（Generative Pre-trained Transformer）系列模型展现出了卓越的 in-context learning 能力。这意味着它们能够根据提供的上下文（即输入文本）理解并生成相关的输出。这种能力的有效性主要归因于以下因素：
+   
+   大规模的预训练：GPT模型在海量的数据上进行预训练，使其能够理解和生成各种各样的文本。
+   
+   Transformer架构：这种架构特别擅长捕捉长距离依赖关系，这对于理解上下文和在给定上下文中生成连贯的文本至关重要。
+   
+   文本生成能力：GPT模型被设计为生成式模型，这意味着它能够基于给定的一段文本生成续写，这就是in-context learning的基础。
+    ```
+13. beam search可以手写一下吗?
+    ```
+    def beam_search(decoder, input_seq, beam_width):
+    sequences = [[list(), 1.0]]
+    
+    # 遍历每个步骤
+    for step in range(max_length):
+        all_candidates = list()
+        # 遍历每个当前序列
+        for seq in sequences:
+            partial_seq, score = seq
+            # 如果序列已经结束，则直接添加到候选中
+            if partial_seq[-1] == end_token:
+                all_candidates.append(seq)
+                continue
+            # 否则，扩展序列
+            for next_token in decoder(partial_seq):
+                new_seq = partial_seq + [next_token]
+                new_score = score * probability_of_next_token
+                all_candidates.append([new_seq, new_score])
+        
+        # 对所有候选按分数排序，并选择得分最高的几个
+        ordered = sorted(all_candidates, key=lambda tup:tup[1], reverse=True)
+        sequences = ordered[:beam_width]
+
+    return sequences
+
+    ```
+
+让我来解释一下在GPT（生成预训练变换器）等模型中的“In-Context Learning”（上下文学习）。  
+
+在上下文学习中，模型能够根据给定的输入文本中的即时上下文进行理解和回应。这是GPT类模型的一个显著特点，尤其是在GPT-3这样的大型语言模型中。具体来说，上下文学习涉及以下几个方面：  
+
+1. **基于上下文的预测**：GPT模型使用输入的文本（上下文）来预测接下来最可能的文本序列。这意味着模型的回应是基于它所接收到的特定信息。  
+
+2. **无需特定训练**：与传统的机器学习模型不同，GPT系列模型并不需要针对特定任务的训练。它们通过理解和利用输入的上下文来生成回应，这种方式使得模型能够在多种任务上表现出色，而无需任务特定的微调。   
+
+3. **示例驱动的学习**：GPT模型能够通过输入的示例（比如问题和答案的对）“理解”任务要求，并在这种格式的引导下生成回应。这种能力特别适用于复杂的语言处理任务，如问答、摘要、翻译等。  
+
+4. **大规模预训练**：GPT模型在海量的文本数据上进行预训练，这使得它们能够捕捉语言的深层次结构和丰富的语义信息。这种大规模预训练是模型能够有效进行上下文学习的关键。  
+
+综上所述，上下文学习使得GPT这类模型在没有特定方向训练的情况下，仅通过分析和理解输入的文本上下文，就能够在各种语言处理任务上表现出色。
