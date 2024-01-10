@@ -128,3 +128,41 @@
             return nn.LayerNorm(self.d_model)(output + residual), attn # enc_outputs [batchSize, len, d_model], enc_self_attention [batchSize, len, len1, len2]
 
    ```
+
+2. 对比RNN,LSTM,GRU,transformer3.transformer 中的 cross-attention 和self
+   ```
+   LSTM旨在处理长期依赖关系时遇到RNN中的梯度消失问题。LSTM通过引入门控机制来控制信息的流动，有效地延长了梯度的传播路径，从而减轻了梯度消失的影响
+   GRU是LSTM的简化版，计算效率和内存占用相对改善很多，但是性能差异不大
+   transformer引入了自注意力机制，使encoder端后面的列也能看到前面的序列.a-I..高也能够并行计算计算效率有大幅的提升
+   ```
+3 .transformer 中的 cross-attention 和self-attention 之间的不同attention 之间的不同
+   ```
+   在encoder-decoder中，self-attention的QKV都是encoder的输入变换来，cross-attention的KV都是来自encoder的输出，Q是decoder的输入经过self-attention后的结果变换而来
+   ```
+
+4. transformer的多头和多层的作用
+   ```
+   多头:每个注意力头可以关注不同的子空间，从而提取不同的特征表示，增加模型对不同特征的敏感度
+   多层:通过多个注意力层的级联，实现更深层次的特征提取和组合，这些特征表示经过多次迭代，逐渐提取更抽象、更复杂的特征。多层注意力层的作用是增加模型的深度和非线性能力捕捉更高级别的特征和语义关系，提高模型在复杂任务上的性能
+   ```
+5. 全连接层为什么要映射至一个更高的维度，又映射回原始维度
+   ```
+   全连接层映射至一个高维空间来使特征向量在这个空间可分，再映射目标域的原始维度以将学到的“分布式特征表示”映射到样本标记空间
+   ```
+7. QKV如何得到
+   ```
+   input经过一个线性层可得到。线性变换的好处: 在QKT部分，线性变换矩阵将KQ投影到了不同的空间，增加了表达能力 (这一原理可以同理SVM中的核函数-将向量映射到高维空间以解决非线性问题)，这样计算得到的注意力矩阵的泛化能力更高
+   ```
+9. 为什么attention 中的公式是除以根号d_k，不是d k或者其他?
+10. transformer 这么多层，是如何解决过拟合问题的?
+    ```
+    残差连接(同resnet)，解决梯度消失，防止过拟合
+    ```
+12. 激活函数的作用是?
+    ```
+    增加模型的非线性表达能力，从而拟合出更复杂的函数
+    ```
+13. pre-norm和post-norm有什么区别? Bert用的是哪一种?
+   ```
+   同一设置pre好于post，但单独调其实post可能会更好。pre-norm的优势在于能够给肉E-个绿色通道，不需要对这部分参数正则，防止梯度消失/爆炸，使得训练更容易，而post-norm在残差之后做归一化，对参数正则化的效果更强。bert用的是post-riorm
+   ```
