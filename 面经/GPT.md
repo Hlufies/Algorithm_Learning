@@ -41,13 +41,24 @@
    b.拿最后一层的输出token平均一下再投影?或者和第一层的输出平均一下，再加一个投影层来做;
    c.结合目前趋势来说，可以设计few-shot/cot等类型的数据直接instruction tuning模型，loss直接保持自回归损失就行。
    ```
-开放问题。
 5. GPT和Bert的mask有什么区别?
    ```
    GPT的掩码机制是用于生成任务的casual-mask，它限制模型只能基于前文生成文本，
    而BERT的掩码机制是用于理解任务的MLM，已入特殊的[MASK]标记来训练模型学习双向上下文信息，于
    ```
 6. 讲一下GPT1，2，3的区别
-7. GPT-2充当reward model时，是怎么得到分数的?
-8. 生成模型的生成采样算法了解吗? 说一下8.为什么对于GPT来说，in-context-learning是有效的?
-9. beam search可以手写一下吗?
+   ```
+   a.1是该系列的第一个模型，提出了decoder-only架构和预训练-微调(pretrain-finetune) 范式
+   b.2在1的基础上，结构上将post-norm改为pre-norm;模型最后一个自注意力层之后，额外增加一个层归一化;去掉了 fine-tuning 训练:只有无监督的 pre-training 阶段。2主打zero-shot
+   c.3在结构上更换了attention机制，alternating dense且locallybanded sparse attention的模型
+   i.atrous:强行要求每个元素只跟它相对距离为k,2k,3k,...的元素关联，其中k>1是预先设定的超参数
+   ii.local:约束每个元素只与前后k个元素以及自身有关联
+   iii.稀疏注意力:除了相对距离不超过k的和相对距离为k,2k,3k,...的注意力都设为0，这样一来Attention就具有“局部紧密关汇程稀疏相关”的特性
+   ```
+8. GPT-2充当reward model时，是怎么得到分数的?
+   ```
+   用sft后的模型生成问题的回答，再拼接问题+回答输入RW得到分数 (取最后一个token投影一下)
+   ```
+10. 生成模型的生成采样算法了解吗? 说一下
+11. 为什么对于GPT来说，in-context-learning是有效的?
+12. beam search可以手写一下吗?
