@@ -30,3 +30,18 @@ int main()
 }
 
 ```
+```
+第k个数
+void quick_sort(int A[], int l, int r, int k){
+    if (l >= r) return A[l];
+    int i = l - 1, j = r+1, x = A[l+r >> 1];
+    
+    while(i < j){
+        do i++; while(A[i] < x);
+        do j--; while(A[j] > x);
+        if (i < j) swap(A[i], A[j]);
+    }
+    if return (j-l+1 >= k)quick_sort(A, l, j, j-l+1-k);
+    else return quick_sort(A, j+1, r, k+l-j-1);
+}
+```
