@@ -45,3 +45,23 @@ void quick_sort(int A[], int l, int r, int k){
     else return quick_sort(A, j+1, r, k+l-j-1);
 }
 ```
+# 归并排序
+```
+void merge(int A[], int l, int r){
+    
+    if (l >= r) return;
+    
+    merge(A,l, l+r>>2);
+    merge(A,l+r>>2+1, r);
+    
+    int k = 0, i = l, j = l+r>>1, mid=l+r>>1;
+    while(i <= mid && j <= r)
+    {
+        if(A[i] < A[j]) B[k++] = A[i++];
+        else B[k++] = A[j++];
+    }
+    while(i <= mid) B[k++] = A[i++];
+    while(j <= r) B[k++] = A[j++];
+    for(int i =l, j = 0; i <= r; i++, j++) A[i] = B[j];
+}
+```
