@@ -41,6 +41,9 @@
 7. [StableDiffusion ControlNet]()
 8. [StableDiffusion Lora]()
 9. [StableDiffusion Dreambooth]()
+10. [IP-Adapter]()
+11. [InstantId]()
+12. [PhotoMaker]()
     
     -------------------------------------------------------------------------------------------------------
    
