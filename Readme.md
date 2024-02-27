@@ -73,3 +73,10 @@
 4. [计算机体系问题](https://github.com/Hlufies/Algorithm_Learning/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E9%97%AE%E9%A2%98/Learning.md)
 5. [面经知识点](https://github.com/Hlufies/Algorithm_Learning/blob/main/%E9%9D%A2%E7%BB%8F/%E9%9D%A2%E7%BB%8F.md)
 6. [面试](https://github.com/Hlufies/Algorithm_Learning/blob/main/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E5%AE%9E%E6%88%98.md)
+## 实习面试
+| 企业 | 时间 |面试times | ×/√ |
+|----------|----------|-------|---|
+| 商汤-LLM大模型预训练实习生   |  2024.1  | 一面  | √ |
+| 商汤-LLM大模型预训练实习生   |  2024.1  | 二面  | x |
+
+
