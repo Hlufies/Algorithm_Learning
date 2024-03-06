@@ -18,3 +18,9 @@
 
 ![image](https://github.com/Hlufies/Algorithm_Learning/assets/130231524/eea891eb-ea25-43c9-82e1-43a1833e0224)
 
+# 动量优化法
+# NAG
+# RMSProp算法
+# Adam算法
+首先，Adam中动量直接并入了梯度一阶矩（指数加权）的估计。其次，相比于缺少修正因子导致二阶矩估计可能在训练初期具有很高偏置的RMSProp，Adam包括偏置修正，修正从原点初始化的一阶矩（动量项）和（非中心的）二阶矩估计。
+
