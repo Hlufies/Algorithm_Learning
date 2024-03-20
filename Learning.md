@@ -8,9 +8,10 @@
 ## 2. CV
 学习目标：主要学习一些经典的卷积神经网络, 如ResNet， Unet， VGG等。   
 学习任务：复现ResNet或则Unet  
-论文链接：
+论文链接：  
 1. https://arxiv.org/abs/1512.03385
-2. https://arxiv.org/abs/1505.04597  
+2. https://arxiv.org/abs/1505.04597
+ 
 [参考链接1: ResNet](https://github.com/rishivar/Resnet-18)  
 [参考链接2: Uent](https://github.com/milesial/Pytorch-UNet)
 
