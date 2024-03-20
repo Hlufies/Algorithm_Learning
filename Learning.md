@@ -50,11 +50,11 @@
    - Diederik P. Kingma, Max Welling. "Auto-Encoding Variational Bayes." International Conference on Learning Representations (ICLR), 2014. [[Paper]](https://arxiv.org/abs/1312.6114)
 
 3. **Flow**:
-   - Diederik P. Kingma, Danilo J. Rezende, Shakir Mohamed, Max Welling. "Semi-Supervised Learning with Deep Generative Models." Advances in Neural Information Processing Systems 28 (NIPS 2015). [[Paper]](https://arxiv.org/abs/1406.5298)
+   - Glow: Generative Flow with Invertible 1x1 Convolutions. [[Paper]](https://arxiv.org/abs/1807.03039)
 
 4. **Diffusion**:
-   - Nal Kalchbrenner, Aaron van den Oord, Karen Simonyan, Ivo Danihelka, Oriol Vinyals, Alex Graves, Koray Kavukcuoglu. "Video Pixel Networks." International Conference on Machine Learning (ICML), 2017. [[Paper]](https://arxiv.org/abs/1610.00527)
-
-这些论文代表了每个概念的开创性工作，并成为相应领域的基础。
+   - Denoising Diffusion Probabilistic Models. [[Paper]](https://arxiv.org/abs/2006.11239)
+   - [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+ 
 **[注]**: 4，5是一些进阶的知识，属于AIGC领域前沿的研究热点。
 # AI安全
