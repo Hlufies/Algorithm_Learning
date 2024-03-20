@@ -5,7 +5,20 @@
 [参考链接1: 李宏毅](https://www.bilibili.com/video/BV1ou411N7X3/?spm_id_from=333.337.search-card.all.click&vd_source=ee5d618c255e7677033d82f9c5a69af1)  
 [参考链接2: 李沐](https://zh-v2.d2l.ai/)  
   
-## 2. 卷积
-[](https://www.bilibili.com/video/BV1NX4y1r7nP/?spm_id_from=333.999.0.0&vd_source=ee5d618c255e7677033d82f9c5a69af1)
+## 2. CV
+学习目标：主要学习一些经典的卷积神经网络, 如ResNet， Unet， VGG等。   
+学习任务：复现ResNet或则Unet  
+论文链接：
+1. https://arxiv.org/abs/1512.03385
+2. https://arxiv.org/abs/1505.04597  
+[参考链接1: ResNet](https://github.com/rishivar/Resnet-18)  
+[参考链接2: Uent](https://github.com/milesial/Pytorch-UNet)
 
+## 3. NLP
+学习目标：主要学习一些经典的语言模型, 如RNN，LSTM等。   
+学习任务：复现LSTM  
+
+## 4. Transformer && Bert && GPT
+
+## 5. Diffusion Model
 # AI安全
