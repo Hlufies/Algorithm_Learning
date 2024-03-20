@@ -44,16 +44,14 @@
 以下是每个术语相关的代表性论文：
 
 1. **GAN (Generative Adversarial Networks)**:
-   - Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio. "Generative Adversarial Nets." Advances in Neural Information Processing Systems 27 (NIPS 2014). [[Paper]](https://arxiv.org/abs/1406.2661)
-
+   - [Generative Adversarial Nets](https://arxiv.org/abs/1406.2661)
 2. **VAE (Variational Autoencoder)**:
-   - Diederik P. Kingma, Max Welling. "Auto-Encoding Variational Bayes." International Conference on Learning Representations (ICLR), 2014. [[Paper]](https://arxiv.org/abs/1312.6114)
-
+   - [Auto-Encoding Variational Bayes](https://arxiv.org/abs/1312.6114)
 3. **Flow**:
-   - Glow: Generative Flow with Invertible 1x1 Convolutions. [[Paper]](https://arxiv.org/abs/1807.03039)
+   - [Glow: Generative Flow with Invertible 1x1 Convolutions](https://arxiv.org/abs/1807.03039)
 
 4. **Diffusion**:
-   - Denoising Diffusion Probabilistic Models. [[Paper]](https://arxiv.org/abs/2006.11239)
+   - [Denoising Diffusion Probabilistic Models](https://arxiv.org/abs/2006.11239)
    - [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
  
 **[注]**: 4，5是一些进阶的知识，属于AIGC领域前沿的研究热点。
