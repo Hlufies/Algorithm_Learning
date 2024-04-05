@@ -38,13 +38,14 @@
 4. [StableDiffusion_DDPM](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDiffusion_DDPM.md)
 5. [StableDiffusion_Unet]()
 6. [StableDiffusion_processImage](https://github.com/Hlufies/Algorithm_Learning/blob/main/CV/StableDifffusion_processImage.md)
-7. [StableDiffusion ControlNet]()
-8. [StableDiffusion Lora]()
-9. [StableDiffusion Dreambooth]()
-10. [IP-Adapter]()
-11. [InstantId]()
-12. [PhotoMaker]()
-13. [解耦表征学习]()
+7. [StableDiffusion-Class_Free_guidance]()
+8. [StableDiffusion ControlNet]()
+9. [StableDiffusion Lora]()
+10. [StableDiffusion Dreambooth]()
+11. [IP-Adapter]()
+12. [InstantId]()
+13. [PhotoMaker]()
+14. [解耦表征学习]()
     
     -------------------------------------------------------------------------------------------------------
    
