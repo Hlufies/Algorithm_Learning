@@ -75,12 +75,9 @@
 5. [面经知识点](https://github.com/Hlufies/Algorithm_Learning/blob/main/%E9%9D%A2%E7%BB%8F/%E9%9D%A2%E7%BB%8F.md)
 6. [面试](https://github.com/Hlufies/Algorithm_Learning/blob/main/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E5%AE%9E%E6%88%98.md)
 ## 实习面试
-| 企业 | 时间 |面试times | ×/√ |
+| 企业 | 时间 |面试times | × / √ |
 |----------|----------|-------|---|
-| 商汤-LLM大模型预训练实习生   |  2024.1  | 一面  | √ |
-| 商汤-LLM大模型预训练实习生   |  2024.1  | 二面  | x |
-| 腾讯-优图实验室计算机视觉实习生   |  2024.3  | 一面  |  |
-| OPPO-研究院AIGC-LLM实习生   |  2024.3  | 一面  |  |
+
 
 
 
