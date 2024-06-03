@@ -17,4 +17,6 @@
 2. 然后利用ITC和ITM任务，在人工标注的高质量图文对上，对BLIP的image-grounded text encoder进行finetune，获得一个高置信度的Filter。
 3. 然后利用LM任务，在人工标注的高质量图文对上，对BLIP的image-grounded text decoder进行finetune，获得一个高质量的Captioner。
 4. 然后针对网络获取的图文对中的图片进行captioning操作，获取描述文本，与图片组成一个图文对。将该图文对和网络获取的图文对一起送进filter中，获取过滤成功的图文对。
-5. 最后将过滤成功的图文对，和人工标注的高质量图文对组成一个全新的数据集，利用该数据集对BLIP进行预训练，获得更加高质量的图文预训练模型。
+5. 最后将过滤成功的图文对，和人工标注的高质量图文对组成一个全新的数据集，利用该数据集对BLIP进行预训练，获得更加高质量的图文预训练模型。  
+
+https://openatomworkshop.csdn.net/6645ac13b12a9d168eb6c2d6.html?dp_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU0NDM5NywiZXhwIjoxNzE3OTgzOTA5LCJpYXQiOjE3MTczNzkxMDksInVzZXJuYW1lIjoicXFfNDU3NjEzOTIifQ.gy3pFEH0lRfLHrIF7OTDJduCTb3ZxvhSJGIkmtPwgAg
