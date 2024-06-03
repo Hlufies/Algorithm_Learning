@@ -211,6 +211,9 @@ BERT 的预训练方法结合了 Masked Language Model (MLM) 和 Next Sentence P
 
 通过数据增强和样本策略，扩大训练数据的覆盖范围，增加模型在不同场景下的泛化能力，从而减轻任务偏向性的影响。
 
+
+https://cloud.tencent.com/developer/article/1588531
+
 #### 5. 结合有监督学习：
 
 在预训练之后，通过有监督学习的方式进一步微调模型，使其适应具体的下游任务要求，从而更好地解决特定任务的问题。
