@@ -12,7 +12,7 @@
    4.5 实际动手 项目经历 (Stable diffuion 的微调)  
    4.6 整个AI的学习怎么学的？  
    4.7 LORA 的原理  + 怎么操作  
-   4.8 Lora有达到预期的结果吗？
+   4.8 Lora有达到预期的结果吗？  
    4.9 softmax -> softmax 变体
    
    
