@@ -4,7 +4,7 @@
 2. Linux 多线程编程
 3. 算法 二叉树前序遍历  后序遍历 非递归
 4. 算法  
-   4.0 论文介绍
+   4.0 论文介绍  
    4.1 Transformer 计算 Attention计算，softmax qkv 集体计算  
    4.2 Transformer类似的结构， 为什么会出现智能涌现的结果？  
    4.3 LLama 的结构 -> 语言模型结构  
