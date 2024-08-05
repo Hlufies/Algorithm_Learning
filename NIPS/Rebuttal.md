@@ -143,9 +143,7 @@ P_{z}(x|\phi \backsimeq \mathcal{D}) =  \frac{q_{\phi_z}(z_{emb}|z)}{2^L \cdot K
 
 In **Eq.4** of Section 3.3 of the paper:
 
-```markdown
-\prod_{{s_k \sim \mathcal{D}_s^k}, {s_{\neg k} \sim \mathcal{D}_s^{\neg k}}} \mathbb{I}(s_k,s_{\neg k}) \gg (c+\beta)^{|\mathcal{D}_s^k|\times|\mathcal{D}_s^{\neg k}|}
-```
+$\prod_{{s_k \sim \mathcal{D}_s^k}, {s_{\neg k} \sim \mathcal{D}_s^{\neg k}}} \mathbb{I}(s_k,s_{\neg k}) \gg (c+\beta)^{|\mathcal{D}_s^k|\times|\mathcal{D}_s^{\neg k}|}$
 
 we aim to ensure the boundary of its spatial distribution so that the protection units are offset pairwise with other samples. Therefore, \(1/2^L\) denotes the probability of the watermark conforming to \(L_{bit}\), \(1/K\) denotes the probability that the sample to be detected belongs to \(K\) datasets' class, and \(1/(c+\beta)^{K\times N^2\times(K-1)}\) denotes the reciprocal of the distance between samples with different styles and contents. Their product represents the probability that the sample to be detected originates from the protected dataset. In hypothesis testing, a low-probability event is almost unlikely to occur in a single random trial, and the probability of such an event is used as the significance level \(\alpha\) (i.e., \(\alpha \leq P(\cdot)\)). Therefore, in the process of copyright ownership detection, the event that the sample is detected as belonging to the protected dataset can be expressed as \(H_0: D \leftarrow x\), with a confidence interval of \(1 - \alpha\), and can be expressed as \(P(|X - \mathcal{D}| \leq c) = 1 - \alpha\). Thus, we have a very high confidence in ensuring the accuracy of the copyright boundary and ownership.
 
