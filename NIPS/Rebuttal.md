@@ -39,3 +39,76 @@ Dear Reviewer z2Ei, thank you very much for your careful review of our paper and
 
 **Q4:** The annotations for these symbols and subscripts are not clear, and there is still significant room for improvement in introducing the technical flow.
 **R4:** Thank you for pointing out the shortcomings in our writing. We will make revisions.
+
+
+---------------------------------------------------------------------------------------------
+
+
+## Reviewer jJoo
+
+Dear Reviewer jJoo, thank you very much for your careful review of our paper and thoughtful comments. We hope the following responses can help clarify potential misunderstandings and alleviate your concerns.
+
+**Q1:** In Table I, it is suggested to compare with some recent and SOTA watermarking methods, such as Trustmark and RoSteALS.
+
+**R1:** Thank you for your constructive suggestions! We have added Trustmark[1] and RoSteALS[2] as comparison baselines. Here are more details and discussions: We set up 100 images with different watermarks. Trustmark has a length of 64 bits, RoSteALS has a length of 56 bits, and ours is 128 bits. We evaluated whether the generated images contained watermarks using TP (True Positive) and TN (True Negative). For watermark extraction, we used Avg acc (%) and $k@t@100\%wd$ as evaluation metrics. The experimental results indicate that previous watermarking methods are diluted or erased during the generation process, which is detrimental to the traceability and ownership of the samples.
+
+| Method           | TP  | TN  | Avg acc (%) | $k@t@100\%wd$ (%) |
+|------------------|-----|-----|-------------|-------------------|
+| Trustmark        | 93  | 907 | 55.37       | 6.6               |
+| RoSteALS         | -   | -   | 66.50       | 7.9               |
+| **Ours**         | 999 | 1   | **99.83**   | **97.7**          |
+
+[1] TrustMark: Universal Watermarking for Arbitrary Resolution Images.
+
+[2] RoSteALS: Robust steganography using autoencoder latent space. In CVPRW 2023.
+
+**Q2:** Can $z$-watermarking resist some watermark removal or attack methods, such as DDIM inversion or VAE? The authors could provide some results to improve the completeness of the experiment.
+
+**R2:** Thank you for your constructive suggestions! We agree that understanding the impact of watermark removal is also important. In our paper's robustness experiments, we conducted experiments on Latent Attacks. To further demonstrate the superiority of our approach, we have included the following additional experiments. We hereby provide more details and discussions.
+
+- First, we use the watermark removal method [1] to attack baseline watermarking schemes and ours. For attacks using variational autoencoders, we evaluate two pre-trained image compression models: Cheng2020 [2]. The compression factors are set to 3. For diffusion model attacks, we use stable diffusion 2.0 [3]. The number of noise steps is set to 60.
+- Second, we chose Avg acc (average watermark accuracy), Detect Acc (percentage of images where decoded bits exceed the detection threshold 0.65), and $k@t@100\%wd$ as the evaluation metrics for watermark robustness. The result is as follows.
+- Third, our method achieves an average accuracy of 97.93% and 95.81%, with a detection accuracy of 100% and $k@t@100\%wd$ of 91.5% and 87.2% under VAE and Diffusion attacks, respectively. In contrast, other methods like DCT-DWT-SVD, RivaGan, and SSL show significantly lower performance. From the results, our performance significantly surpasses other watermarking schemes after being subjected to watermark removal attacks [1].
+
+| Method    | Removal Attack Instance | Avg acc (%) | Detect Acc (%) | $k@t@100\%wd$ (%) |
+|-----------|-------------------------|-------------|----------------|-------------------|
+|           | VAE attack              | 50.17       | 2.0            | 0.0               |
+| **DCT-DWT-SVD** | Diffusion attack        | 54.41       | 2.8            | 0.0               |
+|           | VAE attack              | 60.71       | 6.2            | 0.0               |
+| **RivaGan**    | Diffusion attack        | 58.23       | 1.8            | 0.0               |
+|           | VAE attack              | 62.92       | 15.6           | 0.0               |
+| **SSL**        | Diffusion attack        | 63.21       | 16.3           | 0.0               |
+|           | VAE attack              | **97.93**   | **100**        | **91.5**          |
+| **Ours**       | Diffusion attack        | 95.81       | 100            | 87.2              |
+
+[1] Zhao X, Zhang K, Su Z, et al. Invisible image watermarks are provably removable using generative ai[J]. arXiv preprint arXiv:2306.01953, 2023.
+
+[2] Z. Cheng, H. Sun, M. Takeuchi, and J. Katto, “Learned image compression with discretized gaussian mixture likelihoods and attention modules,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2020, pp. 7939–7948.
+
+[3] R. Rombach, A. Blattmann, D. Lorenz, P. Esser, and B. Ommer, “High-resolution image synthesis with latent diffusion models,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2022, pp. 10 684–10 695.
+
+**Q3:** As the number of protected entities grows, will the styles of these entities influence each other, potentially reducing the model’s detection performance?
+
+**R3:** Thank you for your comments and we do understand your concerns. In response to Question 2, **the advantages of our paper for addressing this issue are to decouple the style domain, utilize dynamic contrastive learning, and use the identifier $z$**. To further alleviate your concerns, we provide more explanations.
+
+- First, we decouple the latent variables into sub-vectors that control image generation, thereby extracting linearly independent combinations of the image's essential features. We utilize dynamic contrastive learning to set sample anchors, edge samples, central samples, and negative samples for the protected units, encouraging the style domain of the protected units to occupy mutually exclusive regions in the high-dimensional space.
+- Second, we propose the identifier $z$ to further enhance the reliability and security of the solution. $z$ represents the identifier that maximally shifts the contraction domain to the edge distribution of the style representation space. Since $z$ is an arbitrary identifier (including any text, string, image, etc.), its capacity is effectively infinite, which is sufficient to differentiate the growing number of protected entities.
+- Third, we have thoroughly validated the feasibility of our approach through primary and ablation experiments. As the number of protected entities increases, the distinctiveness of the model remains robust, ensuring that the styles of these entities do not influence each other.
+
+## Table
+
+| Method    | Removal Attack Instance | Avg acc (%) | Detect Acc (%) | $k@t@100\%wd$ (%) |
+|-----------|-------------------------|-------------|----------------|-------------------|
+|           | VAE attack              | 50.17       | 2.0            | 0.0               |
+| **DCT-DWT-SVD** | Diffusion attack        | 54.41       | 2.8            | 0.0               |
+|           | VAE attack              | 60.71       | 6.2            | 0.0               |
+| **RivaGan**    | Diffusion attack        | 58.23       | 1.8            | 0.0               |
+|           | VAE attack              | 62.92       | 15.6           | 0.0               |
+| **SSL**        | Diffusion attack        | 63.21       | 16.3           | 0.0               |
+|           | VAE attack              | **97.93**   | **100**        | **91.5**          |
+| **Ours**       | Diffusion attack        | 95.81       | 100            | 87.2              |
+
+**Q4:** The annotations for these symbols and subscripts are not clear, and there is still significant room for improvement in introducing the technical flow.
+
+**R4:** Thank you for pointing out the shortcomings in our writing. We will make revisions.
+
