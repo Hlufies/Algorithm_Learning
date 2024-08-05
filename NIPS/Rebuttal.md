@@ -154,36 +154,36 @@ we aim to ensure the boundary of its spatial distribution so that the protection
 
 ```python
 class w_decoder(nn.Module):
-    def __init__(self, in_channels, out_channels, device):
+    def __init__(self, inc, outc, device):
         super(w_decoder, self).__init__()
-        self.in_channels = in_channels
-        self.out_channels = out_channels
+        self.inc = inc
+        self.outc = outc
         self.Conv_Sequential = nn.Sequential(
-            nn.Conv2d(4*in_channels, 4*in_channels, 3, 2, 1),
-            nn.BatchNorm2d(4*in_channels),
+            nn.Conv2d(4*inc, 4*inc, 3, 2, 1),
+            nn.BatchNorm2d(4*inc),
             nn.GELU(),
-            nn.Conv2d(4*in_channels, 4*in_channels, 3, 2, 1),
-            nn.BatchNorm2d(4*in_channels),
+            nn.Conv2d(4*inc, 4*inc, 3, 2, 1),
+            nn.BatchNorm2d(4*inc),
             nn.GELU(),
         )
         self.Features_fusion = nn.Sequential(
-            nn.BatchNorm1d(6*in_channels),
+            nn.BatchNorm1d(6*inc),
             nn.GELU(),
-            nn.Linear(6*in_channels, in_channels),
-            nn.BatchNorm1d(in_channels),
+            nn.Linear(6*inc, inc),
+            nn.BatchNorm1d(inc),
             nn.GELU()
         )
         self.Features_reduce = nn.Sequential(
-            nn.Linear(4*in_channels, 2*in_channels),
-            nn.BatchNorm1d(2*in_channels)
+            nn.Linear(4*inc, 2*inc),
+            nn.BatchNorm1d(2*inc)
         )
         self.out = nn.Sequential(
-            nn.BatchNorm1d(in_channels),
+            nn.BatchNorm1d(inc),
             nn.GELU(),
-            nn.Linear(in_channels, out_channels)
+            nn.Linear(inc, outc)
         )
-        self.fc_d = nn.Linear(in_channels, in_channels)
-        self.fc_f = nn.Linear(in_channels, in_channels)
+        self.fc_d = nn.Linear(inc, inc)
+        self.fc_f = nn.Linear(inc, inc)
         self.Adapt = nn.AdaptiveAvgPool2d(1)
 
     def forward(self, data, domain, z=None):
@@ -249,32 +249,32 @@ In **Eq.4** of Section 3.3 of the paper, we aim to ensure the boundary of its sp
 **R6:** Thank you for your comments. Please note that in our ablation experiments, Acc avg shows a slight increase (±0.2) with increasing bit length. However, the other metric, $k@t@100\%wd$, exhibits a downward trend. We analyze that this decline is primarily due to the model's scale law. PyTorch code as follows:
 ```
 class w_decoder(nn.Module):
-    def __init__(self, in_channels, out_channels):
+    def __init__(self, inc, outc):
         super(w_decoder, self).__init__()
-        self.in_channels = in_channels
-        self.out_channels = out_channels
+        self.inc = inc
+        self.outc = outc
         self.Conv_Sequential = nn.Sequential(
-            nn.Conv2d(4*in_channels, 4*in_channels, 3, 2, 1),
-            nn.BatchNorm2d(4*in_channels),
+            nn.Conv2d(4*inc, 4*inc, 3, 2, 1),
+            nn.BatchNorm2d(4*inc),
             nn.GELU(),
-            nn.Conv2d(4*in_channels, 4*in_channels, 3, 2, 1),
-            nn.BatchNorm2d(4*in_channels),
+            nn.Conv2d(4*inc, 4*inc, 3, 2, 1),
+            nn.BatchNorm2d(4*inc),
             nn.GELU(),)
         self.Features_fusion = nn.Sequential(
-            nn.BatchNorm1d(6*in_channels),
+            nn.BatchNorm1d(6*inc),
             nn.GELU(),
-            nn.Linear(6*in_channels, in_channels),
-            nn.BatchNorm1d(in_channels),
+            nn.Linear(6*inc, inc),
+            nn.BatchNorm1d(inc),
             nn.GELU())
         self.Features_reduce = nn.Sequential(
-            nn.Linear(4*in_channels, 2*in_channels),
-            nn.BatchNorm1d(2*in_channels))
+            nn.Linear(4*inc, 2*inc),
+            nn.BatchNorm1d(2*inc))
         self.out = nn.Sequential(
-            nn.BatchNorm1d(in_channels),
+            nn.BatchNorm1d(inc),
             nn.GELU(),
-            nn.Linear(in_channels, out_channels))
-        self.fc_d = nn.Linear(in_channels, in_channels)
-        self.fc_f = nn.Linear(in_channels, in_channels)
+            nn.Linear(inc, outc))
+        self.fc_d = nn.Linear(inc, inc)
+        self.fc_f = nn.Linear(inc, inc)
         self.Adapt = nn.AdaptiveAvgPool2d(1)
     def forward(self, data, domain, z=None):
         f = self.Conv_Sequential(domain)
