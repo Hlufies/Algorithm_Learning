@@ -54,9 +54,9 @@ Dear Reviewer jJoo, thank you very much for your careful review of our paper and
 
 | Method           | TP  | TN  | Avg acc (%) | $k@t@100\%wd$ (%) |
 |------------------|-----|-----|-------------|-------------------|
-| Trustmark        | 93  | 907 | 55.37       | 6.6               |
-| RoSteALS         | -   | -   | 66.50       | 7.9               |
-| **Ours**         | 999 | 1   | **99.83**   | **97.7**          |
+| Trustmark | 93  | 907 | 55.37       | 6.6   |
+| RoSteALS  | -   | -   | 66.50       | 7.9 |
+| **Ours** | 999 | 1   | **99.83**   | **97.7**  |
 
 [1] TrustMark: Universal Watermarking for Arbitrary Resolution Images.
 
@@ -64,22 +64,22 @@ Dear Reviewer jJoo, thank you very much for your careful review of our paper and
 
 **Q2:** Can $z$-watermarking resist some watermark removal or attack methods, such as DDIM inversion or VAE? The authors could provide some results to improve the completeness of the experiment.
 
-**R2:** Thank you for your constructive suggestions! We agree that understanding the impact of watermark removal is also important. In our paper's robustness experiments, we conducted experiments on Latent Attacks. To further demonstrate the superiority of our approach, we have included the following additional experiments. We hereby provide more details and discussions.
+**R2:** Thank you for your constructive suggestions! In our paper's robustness experiments, we conducted experiments on Latent Attacks. To further demonstrate the superiority of our approach, we have included the following additional experiments. We hereby provide more details.
 
 - First, we use the watermark removal method [1] to attack baseline watermarking schemes and ours. For attacks using variational autoencoders, we evaluate two pre-trained image compression models: Cheng2020 [2]. The compression factors are set to 3. For diffusion model attacks, we use stable diffusion 2.0 [3]. The number of noise steps is set to 60.
 - Second, we chose Avg acc (average watermark accuracy), Detect Acc (percentage of images where decoded bits exceed the detection threshold 0.65), and $k@t@100\%wd$ as the evaluation metrics for watermark robustness. The result is as follows.
 - Third, our method achieves an average accuracy of 97.93% and 95.81%, with a detection accuracy of 100% and $k@t@100\%wd$ of 91.5% and 87.2% under VAE and Diffusion attacks, respectively. In contrast, other methods like DCT-DWT-SVD, RivaGan, and SSL show significantly lower performance. From the results, our performance significantly surpasses other watermarking schemes after being subjected to watermark removal attacks [1].
 
-| Method    | Removal Attack Instance | Avg acc (%) | Detect Acc (%) | $k@t@100\%wd$ (%) |
+| Method | Removal Attack Instance | Avg acc (%) | Detect Acc (%) | $k@t@100\%wd$ (%) |
 |-----------|-------------------------|-------------|----------------|-------------------|
-|           | VAE attack              | 50.17       | 2.0            | 0.0               |
-| **DCT-DWT-SVD** | Diffusion attack        | 54.41       | 2.8            | 0.0               |
-|           | VAE attack              | 60.71       | 6.2            | 0.0               |
-| **RivaGan**    | Diffusion attack        | 58.23       | 1.8            | 0.0               |
-|           | VAE attack              | 62.92       | 15.6           | 0.0               |
-| **SSL**        | Diffusion attack        | 63.21       | 16.3           | 0.0               |
-|           | VAE attack              | **97.93**   | **100**        | **91.5**          |
-| **Ours**       | Diffusion attack        | 95.81       | 100            | 87.2              |
+||VAE attack|50.17| 2.0|0.0|
+|**DCT-DWT-SVD**|Diffusion attack| 54.41 | 2.8| 0.0|
+||VAE attack|60.71|6.2| 0.0|
+|**RivaGan**|Diffusion attack|58.23|1.8|0.0|
+||VAE attack|62.92|15.6|0.0|
+| **SSL**|Diffusion attack|63.21|16.3|0.0|
+||VAE attack|**97.93**|**100** |**91.5**|
+|**Ours**| Diffusion attack| 95.81|100|87.2|
 
 [1] Zhao X, Zhang K, Su Z, et al. Invisible image watermarks are provably removable using generative ai[J]. arXiv preprint arXiv:2306.01953, 2023.
 
@@ -95,20 +95,6 @@ Dear Reviewer jJoo, thank you very much for your careful review of our paper and
 - Second, we propose the identifier $z$ to further enhance the reliability and security of the solution. $z$ represents the identifier that maximally shifts the contraction domain to the edge distribution of the style representation space. Since $z$ is an arbitrary identifier (including any text, string, image, etc.), its capacity is effectively infinite, which is sufficient to differentiate the growing number of protected entities.
 - Third, we have thoroughly validated the feasibility of our approach through primary and ablation experiments. As the number of protected entities increases, the distinctiveness of the model remains robust, ensuring that the styles of these entities do not influence each other.
 
-## Table
-
-| Method    | Removal Attack Instance | Avg acc (%) | Detect Acc (%) | $k@t@100\%wd$ (%) |
-|-----------|-------------------------|-------------|----------------|-------------------|
-|           | VAE attack              | 50.17       | 2.0            | 0.0               |
-| **DCT-DWT-SVD** | Diffusion attack        | 54.41       | 2.8            | 0.0               |
-|           | VAE attack              | 60.71       | 6.2            | 0.0               |
-| **RivaGan**    | Diffusion attack        | 58.23       | 1.8            | 0.0               |
-|           | VAE attack              | 62.92       | 15.6           | 0.0               |
-| **SSL**        | Diffusion attack        | 63.21       | 16.3           | 0.0               |
-|           | VAE attack              | **97.93**   | **100**        | **91.5**          |
-| **Ours**       | Diffusion attack        | 95.81       | 100            | 87.2              |
-
 **Q4:** The annotations for these symbols and subscripts are not clear, and there is still significant room for improvement in introducing the technical flow.
 
 **R4:** Thank you for pointing out the shortcomings in our writing. We will make revisions.
-
