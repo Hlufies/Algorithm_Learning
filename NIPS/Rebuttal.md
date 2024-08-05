@@ -336,7 +336,7 @@ Dear Reviewer d18z, thank you very much for your careful review of our paper and
 
 **Q1: Response on "Why We Need to Protect Individual Creators' Styles and Content Copyrights in the AI Era".**
 
-**R1:**
+**R1:** To further alleviate your concerns, we provide more explanations.
 - First, **considering both style and content aligns better with judicial standards**. In copyright cases, judges assess ownership by comparing the style, brushstrokes, and content of the original and imitation works. 
 
 - Second, **there have been numerous high-profile legal cases involving unauthorized imitation of artists' styles and content by AIGC.** Notable Sarah Andersen [1] and Getty Images [2] have filed lawsuits against Stability AI, DeviantArt, Midjourney, and OpenAI over copyright and trademark infringement. The AI-generation 'Rock, Paper, Scissors'[3] has violated multiple laws, including the U.S. Copyright Act, and the Digital Millennium Copyright Act. Notably, Greg Rutkowski’s art style has been used by AI without authorization for profit over 3 million times [4]. In the AIGC era, safeguarding and tracing the styles and content of personal works is crucial.
