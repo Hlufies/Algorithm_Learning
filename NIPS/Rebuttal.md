@@ -212,14 +212,19 @@ binary_wm = torch.round((wm_logits >= 0).float()).long()
 **R7:** Thank you for this constructive suggestion! To further alleviate your concerns, we hereby compare ours and methods based on backdoor attacks.
 
 - We employ the current state-of-the-art method, DIAGNOSIS[1], for dataset protection through backdoor techniques. It is important to note that the evaluation metrics utilized are True Positive (TP), True Negative (TN), and Attack Success Rate (ASR), as implemented by DIAGNOSIS. We use Stable Diffusion 1.5 as a surrogate model for experiments and have generated 100 images for copyright ownership verification.
-- Main result: The experimental results are shown in the table below.
+- **Main result:** The experimental results are shown in the table below.
 
-| Method    | TP  | TN  | ASR (%) |
+    | Method    | TP  | TN  | ASR (%) | Avg acc (%) | $k@t@100\%wd$ (%) |
+    |-----------|-----|-----|---------|-------------|-------------------|
+    | DIAGNOSIS | 993 | 7   | 99.3    | -           | -                 |
+    | Ours      | 999 | 1   | 99.9    | 99.72       | 98                |
 
- 
-| --------- | --- | --- | ------- |
-| DIAGNOSIS | 92  | 85  | 76.3    |
-| Ours      | 95  | 88  | 79.5    |
+- **Post-tracking ownership:** Post-tracking ownership refers to the process of claiming copyright ownership when the owner discovers suspicious models or images. Due to backdoors in mimic models that have been stolen and not timely injected, effective copyright claims cannot be made.
 
-Thank you again for your review and helpful feedback. We look forward to addressing these points in the revised manuscript and enhancing the clarity and quality of our paper.
+    | Method    | TP  | TN  | ASR (%) | Avg acc (%) | $k@t@100\%wd$ (%) |
+    |-----------|-----|-----|---------|-------------|-------------------|
+    | DIAGNOSIS | 2   | 998 | 0.2     | -           | -                 |
+    | Ours      | 999 | 1   | 99.9    | 99.69       | 94.7              |
+
+[1] DIAGNOSIS: Detecting Unauthorized Data Usages in Text-to-image Diffusion Models. ICLR 2024.
 ```
