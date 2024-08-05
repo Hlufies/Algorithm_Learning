@@ -158,7 +158,7 @@ class w_decoder(nn.Module):
         super(w_decoder, self).__init__()
         self.inc = inc
         self.outc = outc
-        self.Conv_Sequential = nn.Sequential(
+        self.Conv_ = nn.Sequential(
             nn.Conv2d(4*inc, 4*inc, 3, 2, 1),
             nn.BatchNorm2d(4*inc),
             nn.GELU(),
@@ -166,14 +166,14 @@ class w_decoder(nn.Module):
             nn.BatchNorm2d(4*inc),
             nn.GELU(),
         )
-        self.Features_fusion = nn.Sequential(
+        self.F_fusion = nn.Sequential(
             nn.BatchNorm1d(6*inc),
             nn.GELU(),
             nn.Linear(6*inc, inc),
             nn.BatchNorm1d(inc),
             nn.GELU()
         )
-        self.Features_reduce = nn.Sequential(
+        self.F_reduce = nn.Sequential(
             nn.Linear(4*inc, 2*inc),
             nn.BatchNorm1d(2*inc)
         )
@@ -187,10 +187,10 @@ class w_decoder(nn.Module):
         self.Adapt = nn.AdaptiveAvgPool2d(1)
 
     def forward(self, data, domain, z=None):
-        f = self.Conv_Sequential(domain)
+        f = self.Conv_(domain)
         f = self.Adapt(f).view(f.shape[0], f.shape[1])
-        f_reduce = torch.cat((self.Features_reduce(f), f), dim=-1)
-        f_fusion = self.Features_fusion(torch.add(f_reduce, z))
+        f_reduce = torch.cat((self.F_reduce(f), f), dim=-1)
+        f_fusion = self.F_fusion(torch.add(f_reduce, z))
         out = self.fc_d(data) + self.fc_f(f_fusion) + data + f_fusion
         out = self.out(out)
         return out
@@ -224,49 +224,61 @@ binary_wm = torch.round((wm_logits >= 0).float()).long()
 
 --------------------------------------
 
+Dear Reviewer NU2V, thank you very much for your careful review of our paper and thoughtful comments. We hope the following responses can alleviate your concerns.
 
-
-
-Dear Reviewer NU2V, thank you very much for your careful review of our paper and thoughtful comments. We hope the following responses can help clarify potential misunderstandings and alleviate your concerns.
-
-### Q1: The significant problem is the writing,  and This paper is really hard to follow. 
-**R1:** Thank you for your constructive suggestions! We will reorganize and improve it to make the expression clearer and more understandable. **Regarding training details**, we have provided *model details and experiment details in the* *supplementary materials*. 
-### Q3: The paper also lacks simple examples of the data used in the experiment.
-**R3:**  **In Section 3.2 of the supplementary materials**, we generated samples using the prompt "an image of a vast grassland reminiscent of Van Gogh's 'Starry Night'" from suspicious models and APIs, including PixArt-$\alpha$, PG-v2.5, DALL·E·3, and Imagen2.
-### Q4: Can you explain the meaning of each symbol of formula 7 in detail, and supplement the rationality and significance of the indicators proposed?
-**R4:** Formula 7 is as follows:
+### Q1: The significant problem is the writing, this paper is tough to follow and not examples. 
+**R1:** Thank you for your constructive suggestions! We will reorganize and improve it to make the expression clearer and more understandable. **Regarding training details**, we have provided *model details and experiment details *in the supplementary materials. Meanwhile, **in Section 3.2 of the supplementary materials**, we show simple examples of the suspicious data generated from suspicious models and APIs, such as DALL·E·3.
+### Q3: Can you explain the meaning of each symbol of Formula 7 in detail, and supplement the rationality and significance of the indicators proposed?
+**R3:** Formula 7 is as follows:
 $P_{z}(x|\phi \backsimeq \mathcal{D}) = \frac{q_{\phi_z}(z_{emb}|z)}{2^L \cdot K \cdot (c+\beta)^{K \times N^2 \times (K-1)}}$
 - **On the left side of the equation:** $x$ denotes the suspicious sample, $\phi$ represents the parameters of the VAE , $\mathcal{D}$ denotes the protected dataset, $z$ signifies the identifier. And $p(\cdot)$ represents the probability distribution of the copyright of $x$ belonging to $\mathcal{D}$.
 - **On the right side of the equation:** $z_{emb}$ denotes the embedding representation, and $q_{\phi_z}(z_{emb}|z)$ denotes the prior probability distribution. $L$ denotes the length of the watermark, $K$ denotes the number of protected units, $N$ denotes the number of generation of protected unit, $c$ denotes the marginal distance, and $\beta$ denotes a positive hyper-parameter.
 
-In **Eq.4** of Section 3.3 of the paper, we aim to ensure the boundary of its spatial distribution so that the protection units are offset pairwise with other samples. Here, $/2^L$ denotes the probability of the watermark conforming to $L_{bit}$, $1/K$ denotes the probability that the sample to be detected belongs to $K$ datasets' class, and $1/(c+\beta)^{K\times N^2\times(K-1)}$ denotes the reciprocal of the distance between samples with different styles and contents. Their product represents the probability that the sample to be detected originates from the protected dataset. In hypothesis testing, a low-probability event is almost unlikely to occur in a single random trial, and the probability of such an event is used as the significance level $\alpha$ (i.e., $\alpha$ $ \leq P(\cdot))$. Therefore, in the process of copyright ownership detection, the event that the sample is detected as belonging to the protected dataset can be expressed as $H_0: D \leftarrow x$, with a confidence interval of $1 - \alpha\$, and can be expressed as $P(|X - \mathcal{D}| \leq c) = 1 - \alpha$. Thus, we have a very high confidence in ensuring the accuracy of the copyright boundary and ownership.
-### Q5: In 5.2 Main result, can you give the value of the number of protected units (i.e., K) and how the 1000 images used were selected?
-**R5:** Thank you for your comments and we do understand your concerns.
+Here, $/2^L$ denotes the probability of the watermark conforming to $L_{bit}$, $1/K$ denotes the probability that the sample to be detected belongs to $K$ datasets' class, and $1/(c+\beta)^{K\times N^2\times(K-1)}$ denotes the reciprocal of the distance between samples with different styles and contents. Their product represents the probability that the sample to be detected originates from the protected dataset. In hypothesis testing, a low-probability event is almost unlikely to occur in a single random trial, and the probability of such an event is used as the significance level $\alpha$ (i.e., $\alpha$ $ \leq P(\cdot))$. Therefore, in the process of copyright ownership detection, the event that the sample is detected as belonging to the protected dataset can be expressed as $H_0: D \leftarrow x$, with a confidence interval of $1 - \alpha\$, and can be expressed as $P(|X - \mathcal{D}| \leq c) = 1 - \alpha$. Thus, we have a very high confidence in ensuring the ownership.
+### Q4: Can you give the value of the number of protected units (i.e., K) and how the 1000 images used were selected?
+**R4:** Thank you for your comments and we do understand your concerns.
 1. In 5.2 Main result, we set the value of $K$ to 50.
-2. In the process of selecting 1000 images of the protected unit, we first obtained the representation $z$ of each image through the style domain encoder. We randomly selected one as the $z_o$ anchor sample, and the others as $z_{go}$. Then, we ranked them based on their similarity and Euclidean distance, and finally selected the images according to the ranking results.
+2. In the process of selecting 1000 images of the protected unit, we first obtained the representation $z$ of each image through the style domain encoder. We randomly selected one as the $z_o$ anchor sample, and the others as $z_{go}$. Then, we ranked them based on their similarity and Euclidean distance and finally selected the images according to the ranking results.
 
-### Q6: It's observed that the avg acc is higher with the longer the watermark length. Can you give the details of the mapping from the contraction domain to the watermark in the extractor?
-**R6:** Thank you for your comments. Please note that in our ablation experiments, Acc avg shows a slight increase (±0.2) with increasing bit length. However, the other metric, $k@t@100\%wd$, exhibits a downward trend. We analyze that this decline is primarily due to the model's scale law. PyTorch code as follows:
+### Q5: Can you give the details of the mapping from the contraction domain to the watermark in the extractor?
+**R5:** Thank you for your comments. Please note our ablation experiments, Acc avg shows a slight increase (±0.2) with increasing bit length. However, the other metric, $k@t@100\%wd$, exhibits a downward trend. We analyze that this decline is primarily due to the model's scale law. PyTorch code as follows:
+```
+Dear Reviewer NU2V, thank you very much for your careful review of our paper and thoughtful comments. We hope the following responses can alleviate your concerns.
+
+### Q1: The significant problem is the writing, this paper is tough to follow and not examples. 
+**R1:** Thank you for your constructive suggestions! We will reorganize and improve it to make the expression clearer and more understandable. **Regarding training details**, we have provided *model details and experiment details *in the supplementary materials. Meanwhile, **in Section 3.2 of the supplementary materials**, we show simple examples of the suspicious data generated from suspicious models and APIs, such as DALL·E·3.
+### Q3: Can you explain the meaning of each symbol of Formula 7 in detail, and supplement the rationality and significance of the indicators proposed?
+**R3:** Formula 7 is as follows:
+$P_{z}(x|\phi \backsimeq \mathcal{D}) = \frac{q_{\phi_z}(z_{emb}|z)}{2^L \cdot K \cdot (c+\beta)^{K \times N^2 \times (K-1)}}$
+- **On the left side of the equation:** $x$ denotes the suspicious sample, $\phi$ represents the parameters of the VAE , $\mathcal{D}$ denotes the protected dataset, $z$ signifies the identifier. And $p(\cdot)$ represents the probability distribution of the copyright of $x$ belonging to $\mathcal{D}$.
+- **On the right side of the equation:** $z_{emb}$ denotes the embedding representation, and $q_{\phi_z}(z_{emb}|z)$ denotes the prior probability distribution. $L$ denotes the length of the watermark, $K$ denotes the number of protected units, $N$ denotes the number of generation of protected unit, $c$ denotes the marginal distance, and $\beta$ denotes a positive hyper-parameter.
+
+Here, $/2^L$ denotes the probability of the watermark conforming to $L_{bit}$, $1/K$ denotes the probability that the sample to be detected belongs to $K$ datasets' class, and $1/(c+\beta)^{K\times N^2\times(K-1)}$ denotes the reciprocal of the distance between samples with different styles and contents. Their product represents the probability that the sample to be detected originates from the protected dataset. In hypothesis testing, a low-probability event is almost unlikely to occur in a single random trial, and the probability of such an event is used as the significance level $\alpha$ (i.e., $\alpha$ $ \leq P(\cdot))$. Therefore, in the process of copyright ownership detection, the event that the sample is detected as belonging to the protected dataset can be expressed as $H_0: D \leftarrow x$, with a confidence interval of $1 - \alpha\$, and can be expressed as $P(|X - \mathcal{D}| \leq c) = 1 - \alpha$. Thus, we have a very high confidence in ensuring the ownership.
+### Q4: Can you give the value of the number of protected units (i.e., K) and how the 1000 images used were selected?
+**R4:** Thank you for your comments and we do understand your concerns.
+1. In 5.2 Main result, we set the value of $K$ to 50.
+2. In the process of selecting 1000 images of the protected unit, we first obtained the representation $z$ of each image through the style domain encoder. We randomly selected one as the $z_o$ anchor sample, and the others as $z_{go}$. Then, we ranked them based on their similarity and Euclidean distance and finally selected the images according to the ranking results.
+
+### Q5: Can you give the details of the mapping from the contraction domain to the watermark in the extractor?
+**R5:** Thank you for your comments. PyTorch code of watermark extractor is as follows:
 ```
 class w_decoder(nn.Module):
     def __init__(self, inc, outc):
         super(w_decoder, self).__init__()
-        self.inc = inc
-        self.outc = outc
-        self.Conv_Sequential = nn.Sequential(
+        self.Conv_ = nn.Sequential(
             nn.Conv2d(4*inc, 4*inc, 3, 2, 1),
             nn.BatchNorm2d(4*inc),
             nn.GELU(),
             nn.Conv2d(4*inc, 4*inc, 3, 2, 1),
             nn.BatchNorm2d(4*inc),
             nn.GELU(),)
-        self.Features_fusion = nn.Sequential(
+        self.F_fusion = nn.Sequential(
             nn.BatchNorm1d(6*inc),
             nn.GELU(),
             nn.Linear(6*inc, inc),
             nn.BatchNorm1d(inc),
             nn.GELU())
-        self.Features_reduce = nn.Sequential(
+        self.F_reduce = nn.Sequential(
             nn.Linear(4*inc, 2*inc),
             nn.BatchNorm1d(2*inc))
         self.out = nn.Sequential(
@@ -277,32 +289,85 @@ class w_decoder(nn.Module):
         self.fc_f = nn.Linear(inc, inc)
         self.Adapt = nn.AdaptiveAvgPool2d(1)
     def forward(self, data, domain, z=None):
-        f = self.Conv_Sequential(domain)
+        f = self.Conv_(domain)
         f = self.Adapt(f).view(f.shape[0], f.shape[1])
-        f_reduce = torch.cat((self.Features_reduce(f), f), dim=-1)
-        f_fusion = self.Features_fusion(torch.add(f_reduce, z))
+        f_reduce = torch.cat((self.F_reduce(f), f), dim=-1)
+        f_fusion = self.F_fusion(torch.add(f_reduce, z))
         out = self.fc_d(data) + self.fc_f(f_fusion) + data + f_fusion
         out = self.out(out)
         return out
 wm_logits = Z_Model.w_decoder(data, domain, z)
 ```
-### Q7: The experiment is only compared with the digital watermarking method, can you add a comparison with other methods (such as backdoor-based)?
 
-**R7:** To further alleviate your concerns, we compare ours and methods based on backdoor attacks.
+### Q6: Can you add a comparison with other methods (such as backdoor-based)?
 
-- We employ the current state-of-the-art method, DIAGNOSIS[1], for dataset protection through backdoor. It's important to note that the evaluation metrics utilized are True Positive (TP), True Negative (TN), and Attack Success Rate (ASR), as implemented by DIAGNOSIS. 
+**R6:** To further alleviate your concerns, we compare ours and methods based on backdoor attacks.
+- We employ the current SOTA (DIAGNOSIS[1]) for dataset protection through backdoor. The evaluation metrics utilized are True Positive (TP), True Negative (TN), and Attack Success Rate (ASR), as implemented by DIAGNOSIS. 
 - **Main result:** The experimental results are shown in the table below.
 
-    | Method    | TP  | TN  | ASR (%) | Avg acc (%) | $k@t@100\%wd$ (%) |
+    |Method|TP|TN|ASR(%)|Avg acc(%)|$k@t@100\%wd$ (%)|
     |-----------|-----|-----|---------|-------------|-------------------|
-    | DIAGNOSIS | 993 | 7   | 99.3    | -           | -                 |
-    | Ours      | 999 | 1   | 99.9    | 99.72       | 98                |
+    |DIAGNOSIS|993|7|99.3| -           | -                 |
+    |Ours|999|1|99.9|99.72|98|
 
-- **Post-tracking ownership:** Post-tracking ownership refers to the process of claiming copyright ownership when the owner discovers suspicious models or images. Due to backdoors in mimic models that have been stolen and not timely injected, effective copyright claims cannot be made.
+- **Post-tracking ownership:** It refers to the process of claiming copyright ownership when owners discover suspicious models or images.
 
-    | Method    | TP  | TN  | ASR (%) | Avg acc (%) | $k@t@100\%wd$ (%) |
+    | Method|TP|TN|ASR(%)|Avg acc(%)|$k@t@100\%wd$(%)|
     |-----------|-----|-----|---------|-------------|-------------------|
-    | DIAGNOSIS | 2   | 998 | 0.2     | -           | -                 |
-    | Ours      | 999 | 1   | 99.9    | 99.69       | 94.7              |
-
+    |DIAGNOSIS|2|998|0.2| -           | -                 |
+    |Ours|999|1|99.9|99.69|94.7|
 [1] DIAGNOSIS: Detecting Unauthorized Data Usages in Text-to-image Diffusion Models. ICLR 2024.
+
+
+
+
+
+
+
+
+
+
+-----------------
+
+
+## Response to Reviewer d18z
+
+Dear Reviewer d18z, thank you very much for your careful review of our paper and thoughtful comments. 
+
+**Q1: Response on "Why We Need to Protect Individual Creators' Styles and Content Copyrights in the AI Era".**
+
+**R1:**
+- First, **considering both style and content aligns better with judicial standards**. In copyright cases, judges assess ownership by comparing the style, brushstrokes, and content of the original and imitation works. 
+
+- Second, **there have been numerous high-profile legal cases involving unauthorized imitation of artists' styles and content by AIGC.** Notable Sarah Andersen [1] and Getty Images [2] have filed lawsuits against Stability AI, DeviantArt, Midjourney, and OpenAI over copyright and trademark infringement. The AI-generation 'Rock, Paper, Scissors'[3] has violated multiple laws, including the U.S. Copyright Act, and the Digital Millennium Copyright Act. Notably, Greg Rutkowski’s art style has been used by AI without authorization for profit over 3 million times [4]. In the AIGC era, safeguarding and tracing the styles and content of personal works is crucial.
+- Third, **there are already some efforts dedicated to protecting the styles of artistic works,** such as **Glaze: _Protecting Artists from Style Mimicry by Text-to-Image Models_[5] (_Best Paper at USENIX Security 2023_).** Glaze's survey shows that 91% of 1,207 artists are concerned about AI using their works for training. **Artists expect AI mimicry to have a significant impact on the art community:** **97% of artists believe it will reduce job security for some artists; 88% think it will discourage new students from studying art; and 70% feel it will diminish creativity.** Many artists (**over 89%**) have already taken or plan to take action in response to AI mimicry. Additionally, **55%** think reducing their online presence will impact their careers, while **78%** of artists expect AI mimicry to affect job security, rising to **94%** for newer artists. The survey report indicates that without appropriate regulations, AI-style mimicry could undermine people’s motivation for creative freedom.
+- Fourth, **we aim to establish a positive and healthy cycle for the development of art between generative AI and human creation,** where human creators should retain the rights to authorize and trace their creative styles and content. We hope our work will guide the regulated development of generative AI. In the AI era, we believe this step is urgent for ensuring intellectual property rights for human creativity.
+
+
+**Q2: Defining and enforcing copyrights for individual styles would be highly subjective and impractical. Styles evolve and are influenced by many sources, making it difficult to establish clear boundaries for what constitutes a protected style.**
+
+**R2:** Thank you for your comments and we do understand your concerns. ** From a computational perspective, **the abstract high-dimensional features of the style domain have distinctiveness.** In this paper, **to ensure the exclusivity of the style domain**, _we use identifier $z$ to maximally shift the contraction domain to the edge distribution of the style representation space._ Specifically, We decouple the style domain from negative samples and perform dynamic contrastive learning to increase the similarity distance. **The Style Domain is shifted into the contraction domain of the edge distribution by $z$; both $z$ and the watermark to be verified are held by the defender.** The copyright boundary of the protected unit, which is the edge space distribution, can only be correctly tracked and yield the correct watermark when using $z$.
+
+| |TP|TN|$Avg\ acc$(\%)|$k@t@100\%wd$ (\%)|
+|-------------------|-----|-----|-----------------|--------------------|
+|$z$ Error|0|1000|52.15|0|
+|$z$-watermarking|999|1| 99.87| 97.9|
+
+
+**Q3: Regarding the statement ‘Granting copyright protection to individual styles could hinder creativity and artistic progress by restricting the use and evolution of existing styles.’**
+
+**R3:** Thank you for your comments and we do understand your concerns. We will provide a more detailed explanation below.
+
+- **First,** **we should clarify our goal again: creators should have the right to authorize and trace their creative styles and content,** particularly in the context of unauthorized mimicry by generative AI. In the AI era, we believe this step is urgent: ensuring intellectual property protection for human creativity.
+- **Second,** **current instances of plagiarism severely hinder their motivation and damage their creative enthusiasm, turning high-quality works into someone else’s benefit.** Glaze[5]'s survey of **1,207 artists** shows **91%** are worried about AI training on their works. Concerns include job security (**97%**), deterring new students (**88%**), and reduced creativity (**70%**). **89%** are taking action, with **53%** considering reducing their online presence. **77%** believe AI mimics their styles well, but unauthorized use remains a major concern. Glaze collaborates with **art-centric social networks**, advocacy groups like **CAA** (US) and **EGAIR** (EU), government representatives, and companies to protect IP and advocate for artists' rights.
+- **Third,** **our work continues to focus on the perspective of human creators, aiming to ensure the rights of original authors in the era of the generative AI explosion.** We aim to establish a positive cycle for the development of art, where creators have the right to authorize and trace their creative styles and content.
+
+[1] AI art lawsuits: Stability AI, DeviantArt, and Midjourney face litigation.
+
+[2] Inc. Getty Images (US). v. stability ai, inc. Assigned To: Jennifer L. Hall.
+
+[3] Copyright Protection: Exploring Originality and Ownership in a Digital Landscape.
+
+[4] This artist is dominating AI-generated art. 
+
+[5] Glaze: Protecting Artists from Style Mimicry by Text-to-Image Models, USENIX Security 2023.
