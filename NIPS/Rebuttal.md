@@ -1,11 +1,9 @@
-## Reviewer z2Ei
-
 Dear Reviewer z2Ei, thank you very much for your careful review of our paper and your thoughtful comments. We hope that the following responses will help clarify any potential misunderstandings and alleviate your concerns.
 
 **Q1:** Regarding “Moreover, we implement layer-wise guidance dropout by selectively zeroing out portions of \( s_{1:m} \), thereby diminishing the decoder’s dependency on sub-vector correlations.” Is there existing literature that supports this conclusion? Could you provide a more detailed explanation?
 
 **R1:** Thank you for your comments and we do understand your concerns. To further alleviate your concerns, we provide more explanations.
-- Firstly, our goal is to achieve a bidirectional mapping between images and disentangled variables \( s_{1:m} \). By reducing the co-adaptations between Unet layers, it enhances the model's generalization ability, meaning that neurons are less likely to rely too much on each other, thereby achieving decoupling. The dropout guided by zeroing out disentangled variables during training essentially aims to encourage the model to obtain linearly independent solutions for \( s_{1:m} \).
+- Firstly, **our goal is to achieve a bidirectional mapping between images and disentangled variables \( s_{1:m} \).** By reducing the co-adaptations between Unet layers, it enhances the model's generalization ability, meaning that neurons are less likely to rely too much on each other, thereby achieving decoupling. The dropout guided by zeroing out disentangled variables during training essentially aims to encourage the model to obtain linearly independent solutions for \( s_{1:m} \).
 
 - Second, the latest SOTA paper SODA[1] (presented at CVPR 2024, a self-supervised diffusion model designed for representation learning) suggests that disentangled latent spaces can better represent the generated images. **In the conclusion of the reference[1]: To improve localization and reduce correlations among the \( m \) sub-vectors, we present layer masking – a layer-wise generalization of classifier-free guidance [2].** The reference provides ample ablation experiments to validate it.
 
@@ -32,14 +30,12 @@ Dear Reviewer z2Ei, thank you very much for your careful review of our paper and
 
 - Second, we propose the identifier \( z \) to further enhance the reliability and security of the solution. \( z \) represents the identifier that maximally shifts the contraction domain to the edge distribution of the style representation space. Since \( z \) is an arbitrary identifier (including any text, string, image, etc.), its capacity is effectively infinite, which is sufficient to differentiate the growing number of protected entities.
 
-- Third, we have thoroughly validated the feasibility of our approach through primary and ablation experiments. As the number of protected entities increases, the distinctiveness of the model remains robust, ensuring that the styles of these entities do not influence each other. Here are the experimental results regarding \( z \).
+- Third, we have thoroughly validated the feasibility of our approach through primary and ablation experiments. As the number of protected entities increases, the distinctiveness of the model remains robust, ensuring that the styles of these entities do not influence each other.
 
-|           | 0-20% | 20-40% | 40-60% | 60-80% | 80-90% | 90-100% | TP  | TN  | Avg acc (%) ↓ | k@t@100%wd (%) ↓ |
+|           | 0-20% | 20-40% |40-60% | 60-80% | 80-90%|90-100% | TP  | TN  | Avg acc (%) ↓ | k@t@100%wd (%) ↓ |
 |-----------|-------|--------|--------|--------|--------|---------|-----|-----|---------------|------------------|
-| **128-bit** |       |        |        |        |        |         |     |     |               |                  |
-| $z$ Error   | 0     | 151    | 555    | 291    | 3      | 0       | 0   | 1000| 52.15         | 0                |
-| $z$-watermarking | 0   | 0      | 0      | 1      | 6      | **993** | 999 | 1   | **99.87**     | **97.9**         |
+| **$z$ Error**   | 0 |151| 555 |291| 3| 0 | 0 |1000| 52.15 |0|
+| **$z$-watermarking** |0| 0 |0 |1| 6| **993** | 999 | 1 | **99.87** | **97.9** |
 
 **Q4:** The annotations for these symbols and subscripts are not clear, and there is still significant room for improvement in introducing the technical flow.
-
 **R4:** Thank you for pointing out the shortcomings in our writing. We will make revisions.
