@@ -87,6 +87,8 @@ Dear Reviewer jJoo, thank you very much for your careful review of our paper and
 
 [3] R. Rombach, A. Blattmann, D. Lorenz, P. Esser, and B. Ommer, “High-resolution image synthesis with latent diffusion models,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2022, pp. 10 684–10 695.
 
+
+-------------------------------------------------------
 **Q3:** As the number of protected entities grows, will the styles of these entities influence each other, potentially reducing the model’s detection performance?
 
 **R3:** Thank you for your comments and we do understand your concerns. In response to Question 2, **the advantages of our paper for addressing this issue are to decouple the style domain, utilize dynamic contrastive learning, and use the identifier $z$**. To further alleviate your concerns, we provide more explanations.
