@@ -321,6 +321,9 @@ wm_logits = Z_Model.w_decoder(data, domain, z)
 [1] DIAGNOSIS: Detecting Unauthorized Data Usages in Text-to-image Diffusion Models. ICLR 2024.
 
 
+---------------
+
+
 
 
 
