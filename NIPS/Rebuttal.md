@@ -376,3 +376,22 @@ Dear Reviewer d18z, thank you very much for your careful review of our paper and
 [4] This artist is dominating AI-generated art. 
 
 [5] Glaze: Protecting Artists from Style Mimicry by Text-to-Image Models, USENIX Security 2023.
+
+
+
+--------
+
+
+Dear Reviewer d18z, please allow us to thank you again for reviewing our paper and the valuable feedback. And we understand your concerns. We hereby provide more explanations to alleviate your concerns further.
+
+---
+
+Firstly, our method is both simple and efficient for users: they only need to register the identifier $z$, the watermark, and the protected data with a third-party regulatory body, as mentioned in the 3.1 section (Defender Capability) of our paper. [1] notes that with the further commercialization of AIGC, the standardized data flow should involve data owners, model providers, and public regulatory agencies (trusted third parties). The third party will jointly hold the unique identifier $z$ and watermark with the user, ensuring a one-to-one correspondence and non-redundancy between \( z \), the watermark, and the protected data. Together, the identifier $z$, watermark, and protected data constitute a personal copyright entity, enabling effective and secure copyright tracing in judicial proceedings.
+
+Second, the security, rigor, and accuracy of personal copyright verification in judicial procedures are effectively supported and demonstrated by the algorithmic framework and complexity presented in this paper. We have designed a comprehensive protection and tracing mechanism from the perspective of personal copyright security, and we provide extensive experimental results to validate the reliability of our method.
+
+Third, our framework is divided into three stages: registration, computation, and inference. In the registration stage, data owners register their identifier $z$ and corresponding watermark with a third-party regulatory body. In the computation stage, the third party uses our algorithm to perform computations and store the results after receiving the registration list. Regarding resource consumption, in the second stage, using a single 3090 GPU, the average computation time per user is 1 minute, with proxy sample computations averaging 3-5 minutes and memory usage approximately 3MB. In the inference stage, the average inference time for 1000 users is 30-100 milliseconds (i.e., 0.065 milliseconds per user). In terms of copyright tracing accuracy, the ASR metric is close to 100%, with an error rate controlled below 0.1%, and the average watermark accuracy exceeds 99%. Of 1000 suspicious AI mimic samples, about 97% can be traced through judicial verification. Particularly for users such as artists, our framework demonstrates high efficiency both in terms of resource consumption and reliability.
+
+Users such as artists only need to register the identifier $z$ and the corresponding watermark with the third party. The design and complexity of the algorithmic framework ensure the security, rigor, and accuracy of copyright protection. Overall, our framework demonstrates its practicality in judicial security validation, resource consumption, and efficiency.
+
+[1] Building Intelligence Identification System via Large Language Model Watermarking: A Survey and Beyond.
